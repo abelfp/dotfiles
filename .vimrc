@@ -107,7 +107,6 @@ map <F3> :NERDTreeToggle<CR>
 nmap ,t :NERDTreeFind<CR>
 " don;t show these file types
 let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
-
 " vimwiki -----------------------------
 "let g:vimwiki_list = [{'path': '~/vimwiki/', 
 "                     \ 'syntax': 'markdown', 'ext': '.md'}]
