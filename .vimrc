@@ -109,8 +109,8 @@ nmap ,t :NERDTreeFind<CR>
 let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 
 " vimwiki -----------------------------
-let g:vimwiki_list = [{'path': '~/vimwiki/', 
-                     \ 'syntax': 'markdown', 'ext': '.md'}]
+"let g:vimwiki_list = [{'path': '~/vimwiki/', 
+"                     \ 'syntax': 'markdown', 'ext': '.md'}]
 " Airline ------------------------------
 let g:airline_powerline_fonts = 0
 let g:airline_theme = 'bubblegum'
