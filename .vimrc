@@ -1,5 +1,5 @@
 " This is a modified file from the following repo
-" Fisa-vim-config
+" Fisa-vim-config - Original file
 " http://fisadev.github.io/fisa-vim-config/
 " version: 8.3.1
 
