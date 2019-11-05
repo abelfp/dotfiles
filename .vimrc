@@ -22,6 +22,8 @@ call plug#begin('~/.vim/plugged')
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" Vim-fugitive (for git integration)
+Plug 'tpope/vim-fugitive'
 " Better file browser
 Plug 'scrooloose/nerdtree'
 " Code commenter
