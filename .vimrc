@@ -19,6 +19,10 @@ endif
 
 " Active plugins
 call plug#begin('~/.vim/plugged')
+" Surroundings
+Plug 'tpope/vim-surround'
+" Fuzzy match
+Plug 'ctrlpvim/ctrlp.vim'
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
