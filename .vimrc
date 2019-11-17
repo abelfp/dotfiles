@@ -80,6 +80,8 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+" run current python script
+nnoremap <buffer> <F9> :w<CR>:!clear;python3 %<CR>
 " set up colorscheme
 colorscheme gruvbox
 set bg=dark
