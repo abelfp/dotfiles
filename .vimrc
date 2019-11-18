@@ -19,10 +19,6 @@ endif
 
 " Active plugins
 call plug#begin('~/.vim/plugged')
-" Surroundings
-Plug 'tpope/vim-surround'
-" Fuzzy match
-Plug 'ctrlpvim/ctrlp.vim'
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -40,6 +36,10 @@ Plug 'mhinz/vim-signify'
 Plug 'vimwiki/vimwiki'
 " colorscheme for gruvbox
 Plug 'morhetz/gruvbox'
+" autocomplete for python
+Plug 'davidhalter/jedi-vim'
+" auto pairs
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 " Install plugins the first time vim runs
@@ -65,6 +65,7 @@ set shiftwidth=4
 autocmd FileType html setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType htmldjango setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType javascript setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
 " always show status bar
 set ls=2
 " incremental search
@@ -83,9 +84,9 @@ nnoremap <C-H> <C-W><C-H>
 " run current python script
 nnoremap <buffer> <F9> :w<CR>:!clear;python3 %<CR>
 " set up colorscheme
-colorscheme gruvbox
 set bg=dark
-let g:gruvbox_contrast = 'hard'
+let g:gruvbox_contrast_dark = 'hard'
+colorscheme gruvbox
 " autocompletion of files and commands behaves like shell
 set wildmode=list:longest
 " better backup, swap and undos storage
@@ -115,6 +116,7 @@ map <F3> :NERDTreeToggle<CR>
 nmap ,t :NERDTreeFind<CR>
 " don;t show these file types
 let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
+
 " vimwiki -----------------------------
 let g:vimwiki_list = [{'path': '~/', 
                      \ 'syntax': 'markdown', 'ext': '.md'}]
@@ -122,3 +124,12 @@ let g:vimwiki_list = [{'path': '~/',
 let g:airline_powerline_fonts = 0
 let g:airline_theme = 'bubblegum'
 let g:airline#extensions#whitespace#enabled = 0
+" Jedi-VIM -----------------------------
+" Go to definition
+let g:jedi#goto_command = ',d'
+" Find occurrences
+let g:jedi#usages_command = ",o"
+" Find assignments
+let g:jedi#goto_assignments_command = ',a'
+" Go to definition in new tab
+nmap ,D :tab split<CR>:call jedi#goto()<CR>
