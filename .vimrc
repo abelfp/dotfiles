@@ -40,10 +40,10 @@ Plug 'mhinz/vim-signify'
 Plug 'vimwiki/vimwiki'
 " colorscheme for gruvbox
 Plug 'morhetz/gruvbox'
-" autocomplete for python
-Plug 'davidhalter/jedi-vim'
 " auto pairs
 Plug 'jiangmiao/auto-pairs'
+" Completion with Tab
+Plug 'ervandew/supertab'
 call plug#end()
 
 " Install plugins the first time vim runs
@@ -128,12 +128,3 @@ let g:vimwiki_list = [{'path': '~/',
 let g:airline_powerline_fonts = 0
 let g:airline_theme = 'bubblegum'
 let g:airline#extensions#whitespace#enabled = 0
-" Jedi-VIM -----------------------------
-" Go to definition
-let g:jedi#goto_command = ',d'
-" Find occurrences
-let g:jedi#usages_command = ",o"
-" Find assignments
-let g:jedi#goto_assignments_command = ',a'
-" Go to definition in new tab
-nmap ,D :tab split<CR>:call jedi#goto()<CR>
