@@ -36,8 +36,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'vim-scripts/YankRing.vim'
 " Git/mercurial/others diff icons on the side of the file lines
 Plug 'mhinz/vim-signify'
-" vimwiki
-Plug 'vimwiki/vimwiki'
 " colorscheme for gruvbox
 Plug 'morhetz/gruvbox'
 " auto pairs
