@@ -36,12 +36,16 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'vim-scripts/YankRing.vim'
 " Git/mercurial/others diff icons on the side of the file lines
 Plug 'mhinz/vim-signify'
+" vimwiki
+Plug 'vimwiki/vimwiki'
 " colorscheme for gruvbox
 Plug 'morhetz/gruvbox'
 " auto pairs
 Plug 'jiangmiao/auto-pairs'
 " Completion with Tab
 Plug 'ervandew/supertab'
+" Issues with syntax
+Plug 'scrooloose/syntastic'
 call plug#end()
 
 " Install plugins the first time vim runs
@@ -126,3 +130,12 @@ let g:vimwiki_list = [{'path': '~/',
 let g:airline_powerline_fonts = 0
 let g:airline_theme = 'bubblegum'
 let g:airline#extensions#whitespace#enabled = 0
+" Syntastic ----------------------------
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
