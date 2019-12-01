@@ -42,6 +42,8 @@ Plug 'vimwiki/vimwiki'
 Plug 'morhetz/gruvbox'
 " auto pairs
 Plug 'jiangmiao/auto-pairs'
+" Trailing white-space
+Plug 'bronson/vim-trailing-whitespace'
 " Completion with Tab
 Plug 'ervandew/supertab'
 " Issues with syntax
@@ -57,6 +59,8 @@ endif
 " Vim settings and mappings
 " no vi-compatible
 set nocompatible
+" Set no backspace for new lines or tabs
+set backspace=0
 " allow plugins by file type (required for plugins!)
 filetype plugin on
 filetype indent on
@@ -122,6 +126,9 @@ map <F3> :NERDTreeToggle<CR>
 nmap ,t :NERDTreeFind<CR>
 " don;t show these file types
 let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
+
+" NerdCommenter -----------------------
+let g:NERDCommentEmptyLines = 1
 
 " vimwiki -----------------------------
 let g:vimwiki_list = [{'path': '~/', 
