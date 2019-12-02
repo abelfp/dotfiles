@@ -46,6 +46,11 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'bronson/vim-trailing-whitespace'
 " Completion with Tab
 Plug 'ervandew/supertab'
+" Snippets repositories
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
 " Issues with syntax
 Plug 'scrooloose/syntastic'
 call plug#end()
@@ -97,6 +102,16 @@ nnoremap <buffer> <F9> :w<CR>:!clear;python3 %<CR>
 set bg=dark
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
+" Spell check
+setlocal spell spelllang=en
+" GruvboxRedSign
+hi SpellBad ctermfg=167 ctermbg=237 guifg=#fb4934 guibg=#3c3836
+" GruvboxBlueSign
+hi SpellCap ctermfg=109 ctermbg=237 guifg=#83a598 guibg=#3c3836
+" GruvboxPurpleSign
+hi SpellRare ctermfg=175 ctermbg=237 guifg=#d3869b guibg=#3c3836
+" GruvboxYellowSign
+hi SpellLocal ctermfg=214 ctermbg=237 guifg=#fabd2f guibg=#3c3836
 " autocompletion of files and commands behaves like shell
 set wildmode=list:longest
 " better backup, swap and undos storage
@@ -119,7 +134,7 @@ if !isdirectory(&undodir)
     call mkdir(&undodir, "p")
 endif
 
-" NERDTree ----------------------------- 
+" NERDTree -----------------------------
 " toggle nerdtree display
 map <F3> :NERDTreeToggle<CR>
 " open nerdtree with the current file selected
@@ -131,7 +146,7 @@ let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 let g:NERDCommentEmptyLines = 1
 
 " vimwiki -----------------------------
-let g:vimwiki_list = [{'path': '~/', 
+let g:vimwiki_list = [{'path': '~/',
                      \ 'syntax': 'markdown', 'ext': '.md'}]
 " Airline ------------------------------
 let g:airline_powerline_fonts = 0
