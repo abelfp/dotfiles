@@ -103,7 +103,7 @@ set bg=dark
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 " Spell check
-setlocal spell spelllang=en
+set spell spelllang=en
 " GruvboxRedSign
 hi SpellBad ctermfg=167 ctermbg=237 guifg=#fb4934 guibg=#3c3836
 " GruvboxBlueSign
@@ -152,6 +152,7 @@ let g:vimwiki_list = [{'path': '~/',
 let g:airline_powerline_fonts = 0
 let g:airline_theme = 'bubblegum'
 let g:airline#extensions#whitespace#enabled = 0
+
 " Syntastic ----------------------------
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
