@@ -100,6 +100,9 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 " run current python script
 nnoremap <F9> :w<CR>:!clear;python3 %<CR>
+" check syntax
+nnoremap <C-W>E :SyntasticCheck<CR>
+nnoremap <C-W>R :SyntasticReset<CR>
 " set up colorscheme
 set bg=dark
 let g:gruvbox_contrast_dark = 'hard'
@@ -156,6 +159,9 @@ let g:airline_theme = 'bubblegum'
 let g:airline#extensions#whitespace#enabled = 0
 
 " Syntastic ----------------------------
+let g:syntastic_mode_map = {'mode': 'passive',
+                           \ 'active_filetypes': [],
+                           \ 'passive_filetypes': [] }
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
