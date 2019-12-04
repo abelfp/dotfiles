@@ -21,6 +21,8 @@ endif
 call plug#begin('~/.vim/plugged')
 " Surroundings
 Plug 'tpope/vim-surround'
+" vim-repeat
+Plug 'tpope/vim-repeat'
 " Fuzzy match
 Plug 'ctrlpvim/ctrlp.vim'
 " Airline
@@ -97,7 +99,7 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 " run current python script
-nnoremap <buffer> <F9> :w<CR>:!clear;python3 %<CR>
+nnoremap <F9> :w<CR>:!clear;python3 %<CR>
 " set up colorscheme
 set bg=dark
 let g:gruvbox_contrast_dark = 'hard'
