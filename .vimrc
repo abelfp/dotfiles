@@ -78,6 +78,11 @@ set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+" columns
+set colorcolumn=80,100
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+" no word wrap
+set nowrap
 " tab length exceptions on some file types
 autocmd FileType html setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType htmldjango setlocal shiftwidth=4 tabstop=4 softtabstop=4
@@ -110,13 +115,27 @@ colorscheme gruvbox
 " Spell check
 set spell spelllang=en
 " GruvboxRedSign
-hi SpellBad ctermfg=167 ctermbg=237 guifg=#fb4934 guibg=#3c3836
+hi SpellBad term=underline cterm=underline ctermfg=167 gui=underline guifg=#fb4934
+"hi SpellBad ctermfg=167 ctermbg=237 guifg=#fb4934 guibg=#3c3836
 " GruvboxBlueSign
-hi SpellCap ctermfg=109 ctermbg=237 guifg=#83a598 guibg=#3c3836
+hi SpellCap term=underline cterm=underline ctermfg=109 gui=underline guifg=#83a589
+"hi SpellCap ctermfg=109 ctermbg=237 guifg=#83a598 guibg=#3c3836
 " GruvboxPurpleSign
-hi SpellRare ctermfg=175 ctermbg=237 guifg=#d3869b guibg=#3c3836
+hi SpellRare term=underline cterm=underline ctermfg=175 gui=underline guifg=#d3869b
+"hi SpellRare ctermfg=175 ctermbg=237 guifg=#d3869b guibg=#3c3836
 " GruvboxYellowSign
-hi SpellLocal ctermfg=214 ctermbg=237 guifg=#fabd2f guibg=#3c3836
+hi SpellLocal term=underline cterm=underline ctermfg=214 gui=underline guifg=#fabd2f
+"hi SpellLocal ctermfg=214 ctermbg=237 guifg=#fabd2f guibg=#3c3836
+" Change colors for italic and bold in vimwiki md
+hi VimwikiItalicT cterm=undercurl gui=undercurl guisp=#fb4934
+hi VimwikiBoldT ctermfg=243 guifg=#7c6f64
+hi VimwikiBoldItalicT cterm=undercurl gui=undercurl guisp=#fb4934 ctermfg=243 guifg=#7c6f64
+hi VimwikiItalicBoldT cterm=undercurl gui=undercurl guisp=#fb4934 ctermfg=243 guifg=#7c6f64
+
+hi VimwikiItalic cterm=undercurl gui=undercurl guisp=#fb4934
+hi VimwikiBold ctermfg=243 guifg=#7c6f64
+hi VimwikiBoldItalic cterm=undercurl gui=undercurl guisp=#fb4934 ctermfg=243 guifg=#7c6f64
+hi VimwikiItalicBold cterm=undercurl gui=undercurl guisp=#fb4934 ctermfg=243 guifg=#7c6f64
 " autocompletion of files and commands behaves like shell
 set wildmode=list:longest
 " better backup, swap and undos storage
