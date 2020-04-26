@@ -158,6 +158,8 @@ if !isdirectory(&undodir)
     call mkdir(&undodir, "p")
 endif
 
+map ,re :source $MYVIMRC<CR>
+
 " NERDTree -----------------------------
 " toggle nerdtree display
 map <F3> :NERDTreeToggle<CR>

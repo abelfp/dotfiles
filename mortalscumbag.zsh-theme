@@ -45,6 +45,15 @@ function my_current_branch() {
   echo $(git_current_branch || echo "(no branch)")
 }
 
+function my_conda_env() {
+  conda_env="$(basename $CONDA_PREFIX)"
+  if [ $conda_env = "anaconda3" ]; then
+    echo ""
+  else
+    echo "%{$fg_bold[blue]%}<$(basename $CONDA_PREFIX)> "
+  fi
+}
+
 function ssh_connection() {
   if [[ -n $SSH_CONNECTION ]]; then
     echo "%{$fg_bold[red]%}(ssh) "
@@ -52,7 +61,7 @@ function ssh_connection() {
 }
 
 local ret_status="%(?:%{$fg_bold[green]%}:%{$fg_bold[red]%})%?%{$reset_color%}"
-PROMPT=$'$(ssh_connection)%{$fg_bold[red]%}%n%{$reset_color%}@%{$fg_bold[yellow]%}%m%{$reset_color%}$(my_git_prompt) : %{$fg[green]%}%~%{$reset_color%}\n[${ret_status}] %# '
+PROMPT=$'$(my_conda_env)$(ssh_connection)%{$fg_bold[red]%}%n%{$reset_color%}@%{$fg_bold[yellow]%}%m%{$reset_color%}$(my_git_prompt) : %{$fg[green]%}%~%{$reset_color%}\n[${ret_status}] %# '
 
 ZSH_THEME_PROMPT_RETURNCODE_PREFIX="%{$fg_bold[red]%}"
 ZSH_THEME_GIT_PROMPT_PREFIX=" $fg[white]‹ %{$fg_bold[cyan]%}"
