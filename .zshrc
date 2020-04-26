@@ -106,5 +106,10 @@ if [ -f ~/.aliases ]; then
   source ~/.aliases
 fi
 
+# Allow Xming in Ubuntu subsystem in Windows
+if [ $current_user = "mudi"  ]; then
+    export DISPLAY=:0
+fi
+
 # added by Anaconda3 5.2.0 installer
 # export PATH="/Users/abepriet/anaconda3/bin:$PATH";
