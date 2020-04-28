@@ -104,3 +104,6 @@ fi
 
 # added by Anaconda3 5.2.0 installer
 export PATH="/Users/abepriet/anaconda3/bin:$PATH";
+
+# Add date and time to right side of the prompt
+RPROMPT="[%D{%f/%m/%y} | %D{%H:%M:%S}]"
