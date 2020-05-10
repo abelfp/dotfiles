@@ -126,3 +126,7 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+export LESS="$LESS -R -Q"
+
+# Add date and time to right side of prompt
+RPROMPT="[%D{%f/%m/%y} | %D{%H:%M:%S}]"

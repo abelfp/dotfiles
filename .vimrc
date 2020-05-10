@@ -19,42 +19,58 @@ endif
 
 " Active plugins
 call plug#begin('~/.vim/plugged')
-" Surroundings
-Plug 'tpope/vim-surround'
+
+" --- Key bindings and Typing
+
+" You Complete Me. Follow installation instructions here:
+" https://github.com/ycm-core/YouCompleteMe/wiki/Full-Installation-Guide
+Plug 'ycm-core/YouCompleteMe'
 " vim-repeat
 Plug 'tpope/vim-repeat'
+" Surroundings
+Plug 'tpope/vim-surround'
+" auto pairs
+Plug 'jiangmiao/auto-pairs'
+" Code commenter
+Plug 'scrooloose/nerdcommenter'
+" Track the engine
+Plug 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them
+Plug 'honza/vim-snippets'
+
+" --- File Browsing
+
 " Fuzzy match
 Plug 'ctrlpvim/ctrlp.vim'
+" Better file browser
+Plug 'scrooloose/nerdtree'
+
+" --- Syntax
+
+" Issues with syntax
+Plug 'scrooloose/syntastic'
+" Trailing white-space
+Plug 'bronson/vim-trailing-whitespace'
+" vimwiki
+Plug 'vimwiki/vimwiki'
+
+" --- Storage
+
+" Yank history navigation
+Plug 'vim-scripts/YankRing.vim'
+
+" --- Aesthetics
+
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Vim-fugitive (for git integration)
 Plug 'tpope/vim-fugitive'
-" Better file browser
-Plug 'scrooloose/nerdtree'
-" Code commenter
-Plug 'scrooloose/nerdcommenter'
-" Yank history navigation
-Plug 'vim-scripts/YankRing.vim'
 " Git/mercurial/others diff icons on the side of the file lines
 Plug 'mhinz/vim-signify'
-" vimwiki
-Plug 'vimwiki/vimwiki'
 " colorscheme for gruvbox
 Plug 'morhetz/gruvbox'
-" auto pairs
-Plug 'jiangmiao/auto-pairs'
-" Trailing white-space
-Plug 'bronson/vim-trailing-whitespace'
-" Completion with Tab
-Plug 'ervandew/supertab'
-" Snippets repositories
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
-Plug 'honza/vim-snippets'
-" Issues with syntax
-Plug 'scrooloose/syntastic'
+
 call plug#end()
 
 " Install plugins the first time vim runs
@@ -71,6 +87,8 @@ set backspace=0
 " allow plugins by file type (required for plugins!)
 filetype plugin on
 filetype indent on
+" display all matching files when we tab
+set wildmenu
 " set number and relativenumber
 set number relativenumber
 " tabs and spaces handling
@@ -96,8 +114,13 @@ set incsearch
 set hlsearch
 " syntax highlight on
 syntax on
+" set splitting orientation
+set splitbelow
+set splitright
 " when scrolling, keep cursor 3 lines away from screen border
-set scrolloff=3
+set scrolloff=5
+" For visualbell
+set visualbell
 " navigate windows with meta+hjkl
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -105,9 +128,6 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 " run current python script
 nnoremap <F9> :w<CR>:!clear;python3 %<CR>
-" check syntax
-nnoremap <C-W>E :SyntasticCheck<CR>
-nnoremap <C-W>R :SyntasticReset<CR>
 " set up colorscheme
 set bg=dark
 let g:gruvbox_contrast_dark = 'hard'
@@ -183,11 +203,32 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:syntastic_mode_map = {'mode': 'passive',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': [] }
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
+" check syntax
+nnoremap <leader>E :SyntasticCheck<CR>
+nnoremap <leader>R :SyntasticReset<CR>
+
+" Snippets ----------------------------
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsJumpForwardTrigger="<c-f>"
+let g:UltiSnipsJumpBackwardTrigger="<c-d>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" YouCompleteMe -----------------------
+nnoremap <leader>jg :YcmCompleter GoTo<CR>
+nnoremap <leader>jr :YcmCompleter GoToReferences<CR>
+nnoremap <leader>jd :YcmCompleter GetDoc<CR>
+nnoremap <leader>jt :YcmCompleter GetType<CR>
+
+let g:ycm_python_interpreter_path = '/home/mudi/anaconda3/bin/python'
+let g:ycm_python_sys_path = [
+  \  '/home/mudi/anaconda3/lib/python3.7/site-packages/pandas',
+  \  '/home/mudi/anaconda3/lib/python3.7/site-packages/numpy'
+  \]
+let g:ycm_extra_conf_vim_data = [
+  \  'g:ycm_python_interpreter_path',
+  \  'g:ycm_python_sys_path'
+  \]
+let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
