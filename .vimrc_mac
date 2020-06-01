@@ -55,6 +55,9 @@ Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 " Issues with syntax
 Plug 'scrooloose/syntastic'
+" fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " Install plugins the first time vim runs
@@ -159,6 +162,7 @@ if !isdirectory(&undodir)
 endif
 
 map ,re :source $MYVIMRC<CR>
+map ,nn :set nonu norelativenumber<CR>
 
 " NERDTree -----------------------------
 " toggle nerdtree display
@@ -174,6 +178,10 @@ let g:NERDCommentEmptyLines = 1
 " vimwiki -----------------------------
 let g:vimwiki_list = [{'path': '~/',
                      \ 'syntax': 'markdown', 'ext': '.md'}]
+
+" fzf ---------------------------------
+nnoremap <leader>p :GFiles<CR>
+
 " Airline ------------------------------
 let g:airline_powerline_fonts = 0
 let g:airline_theme = 'bubblegum'
