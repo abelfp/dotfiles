@@ -1,8 +1,4 @@
-" This is a modified file from the following repo
-" Fisa-vim-config
-" http://fisadev.github.io/fisa-vim-config/
-" version: 8.3.1
-
+" Check if vim-plug is installed, if not install it
 let vim_plug_just_installed = 0
 let vim_plug_path = expand('~/.vim/autoload/plug.vim')
 if !filereadable(vim_plug_path)
@@ -20,15 +16,17 @@ endif
 " Active plugins
 call plug#begin('~/.vim/plugged')
 
+" Essential Plugin
+" colorscheme for gruvbox
+Plug 'morhetz/gruvbox'
+
 " --- Key bindings and Typing
 
 " You Complete Me. Follow installation instructions here:
 " https://github.com/ycm-core/YouCompleteMe/wiki/Full-Installation-Guide
 Plug 'ycm-core/YouCompleteMe'
-" vim-repeat
-Plug 'tpope/vim-repeat'
-" Surroundings
-Plug 'tpope/vim-surround'
+" You can use coc instead of ycm
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " auto pairs
 Plug 'jiangmiao/auto-pairs'
 " Code commenter
@@ -37,13 +35,9 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them
 Plug 'honza/vim-snippets'
-
-" --- File Browsing
-
-" Fuzzy match
-Plug 'ctrlpvim/ctrlp.vim'
-" Better file browser
-Plug 'scrooloose/nerdtree'
+" Fuzzy finding
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " --- Syntax
 
@@ -53,6 +47,8 @@ Plug 'scrooloose/syntastic'
 Plug 'bronson/vim-trailing-whitespace'
 " vimwiki
 Plug 'vimwiki/vimwiki'
+" For git diff on files
+Plug 'mhinz/vim-signify'
 
 " --- Storage
 
@@ -64,12 +60,6 @@ Plug 'vim-scripts/YankRing.vim'
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Vim-fugitive (for git integration)
-Plug 'tpope/vim-fugitive'
-" Git/mercurial/others diff icons on the side of the file lines
-Plug 'mhinz/vim-signify'
-" colorscheme for gruvbox
-Plug 'morhetz/gruvbox'
 
 call plug#end()
 
@@ -79,16 +69,19 @@ if vim_plug_just_installed
     :PlugInstall
 endif
 
+
 " Vim settings and mappings
 " no vi-compatible
 set nocompatible
 " Set no backspace for new lines or tabs
 set backspace=0
+" syntax highlight on
+syntax on
 " allow plugins by file type (required for plugins!)
 filetype plugin on
 filetype indent on
-" display all matching files when we tab
-set wildmenu
+" no word wrap
+set nowrap
 " set number and relativenumber
 set number relativenumber
 " tabs and spaces handling
@@ -99,8 +92,6 @@ set shiftwidth=4
 " columns
 set colorcolumn=80,100
 highlight ColorColumn ctermbg=0 guibg=lightgrey
-" no word wrap
-set nowrap
 " tab length exceptions on some file types
 autocmd FileType html setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType htmldjango setlocal shiftwidth=4 tabstop=4 softtabstop=4
@@ -112,15 +103,17 @@ set ls=2
 set incsearch
 " highlighted search results
 set hlsearch
-" syntax highlight on
-syntax on
 " set splitting orientation
 set splitbelow
 set splitright
-" when scrolling, keep cursor 3 lines away from screen border
+" when scrolling, keep cursor 5 lines away from screen border
 set scrolloff=5
 " For visualbell
 set visualbell
+" set up colorscheme
+set bg=dark
+let g:gruvbox_contrast_dark = 'hard'
+colorscheme gruvbox
 " navigate windows with meta+hjkl
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -128,10 +121,6 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 " run current python script
 nnoremap <F9> :w<CR>:!clear;python3 %<CR>
-" set up colorscheme
-set bg=dark
-let g:gruvbox_contrast_dark = 'hard'
-colorscheme gruvbox
 " Spell check
 set spell spelllang=en
 " GruvboxRedSign
@@ -180,14 +169,6 @@ endif
 
 map ,re :source $MYVIMRC<CR>
 
-" NERDTree -----------------------------
-" toggle nerdtree display
-map <F3> :NERDTreeToggle<CR>
-" open nerdtree with the current file selected
-nmap ,t :NERDTreeFind<CR>
-" don;t show these file types
-let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
-
 " NerdCommenter -----------------------
 let g:NERDCommentEmptyLines = 1
 
@@ -216,9 +197,12 @@ let g:UltiSnipsJumpBackwardTrigger="<c-d>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+" Fuzzy finding Gfiles
+nnoremap <leader>p :GFiles<CR>
+
 " YouCompleteMe -----------------------
-nnoremap <leader>jg :YcmCompleter GoTo<CR>
-nnoremap <leader>jr :YcmCompleter GoToReferences<CR>
+nnoremap <leader>gd :YcmCompleter GoTo<CR>
+nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 nnoremap <leader>jd :YcmCompleter GetDoc<CR>
 nnoremap <leader>jt :YcmCompleter GetType<CR>
 
