@@ -19,6 +19,8 @@ endif
 
 " Active plugins
 call plug#begin('~/.vim/plugged')
+" Show tabs
+Plug 'Yggdroot/indentLine'
 " Surroundings
 Plug 'tpope/vim-surround'
 " vim-repeat
@@ -51,7 +53,6 @@ Plug 'ervandew/supertab'
 " Snippets repositories
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 " Issues with syntax
 Plug 'scrooloose/syntastic'
@@ -81,6 +82,12 @@ set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+" set splitting orientation
+set splitbelow
+set splitright
+" show tabs and linefeeds
+set list
+set listchars=eol:¬
 " columns
 set colorcolumn=80,100
 highlight ColorColumn ctermbg=0 guibg=lightgrey
@@ -111,12 +118,16 @@ nnoremap <F9> :w<CR>:!clear;python3 %<CR>
 " check syntax
 nnoremap <C-W>E :SyntasticCheck<CR>
 nnoremap <C-W>R :SyntasticReset<CR>
+" Move highlighted region up or down
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+nnoremap <leader>ye "*yg_
 " set up colorscheme
 set bg=dark
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 " Spell check
-set spell spelllang=en
+" set spell spelllang=en
 " GruvboxRedSign
 hi SpellBad term=underline cterm=underline ctermfg=167 gui=underline guifg=#fb4934
 "hi SpellBad ctermfg=167 ctermbg=237 guifg=#fb4934 guibg=#3c3836
@@ -177,7 +188,7 @@ let g:NERDCommentEmptyLines = 1
 
 " vimwiki -----------------------------
 let g:vimwiki_list = [{'path': '~/',
-                     \ 'syntax': 'markdown', 'ext': '.md'}]
+                     \ 'syntax': 'default', 'ext': '.md'}]
 
 " fzf ---------------------------------
 nnoremap <leader>p :GFiles<CR>
@@ -191,11 +202,6 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:syntastic_mode_map = {'mode': 'passive',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': [] }
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
+let g:vim_json_syntax_conceal = 0
+let g:indentLine_concealcursor = ""
+let g:indentLine_conceallevel = 2
