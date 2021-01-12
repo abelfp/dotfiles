@@ -13,3 +13,6 @@ bind l select-pane -R
 
 # Extend scrollback
 set-option -g history-limit 10000
+
+# change to ctrl + a
+set-option -g prefix C-a

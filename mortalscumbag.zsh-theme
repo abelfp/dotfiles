@@ -47,11 +47,11 @@ function my_current_branch() {
 }
 
 function my_conda_env() {
-  conda_env="$(basename $CONDA_PREFIX)"
+  conda_env="$(basename -a $CONDA_PREFIX)"
   if [ $conda_env = "anaconda3" ]; then
     echo ""
   else
-    echo "%{$fg_bold[blue]%}<$(basename $CONDA_PREFIX)> "
+    echo "%{$fg_bold[blue]%}<$(basename -a $CONDA_PREFIX)> "
   fi
 }
 

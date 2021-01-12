@@ -24,7 +24,7 @@ Plug 'morhetz/gruvbox'
 
 " You Complete Me. Follow installation instructions here:
 " https://github.com/ycm-core/YouCompleteMe/wiki/Full-Installation-Guide
-Plug 'ycm-core/YouCompleteMe'
+"Plug 'ycm-core/YouCompleteMe'
 " You can use coc instead of ycm
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " auto pairs
@@ -174,7 +174,12 @@ let g:NERDCommentEmptyLines = 1
 
 " vimwiki -----------------------------
 let g:vimwiki_list = [{'path': '~/',
-                     \ 'syntax': 'markdown', 'ext': '.md'}]
+                     \ 'template_path': '~/vimwiki/templates/',
+                     \ 'template_default': 'default',
+                     \ 'path_html': '~/vimwiki_html/',
+                     \ 'syntax': 'markdown', 'ext': '.md',
+                     \ 'custom_wiki2html': 'vimwiki_markdown',
+                     \ 'template_ext': '.tpl'}]
 " Airline ------------------------------
 let g:airline_powerline_fonts = 0
 let g:airline_theme = 'bubblegum'
@@ -199,20 +204,3 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Fuzzy finding Gfiles
 nnoremap <leader>p :GFiles<CR>
-
-" YouCompleteMe -----------------------
-nnoremap <leader>gd :YcmCompleter GoTo<CR>
-nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
-nnoremap <leader>jd :YcmCompleter GetDoc<CR>
-nnoremap <leader>jt :YcmCompleter GetType<CR>
-
-let g:ycm_python_interpreter_path = '/home/mudi/anaconda3/bin/python'
-let g:ycm_python_sys_path = [
-  \  '/home/mudi/anaconda3/lib/python3.7/site-packages/pandas',
-  \  '/home/mudi/anaconda3/lib/python3.7/site-packages/numpy'
-  \]
-let g:ycm_extra_conf_vim_data = [
-  \  'g:ycm_python_interpreter_path',
-  \  'g:ycm_python_sys_path'
-  \]
-let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'

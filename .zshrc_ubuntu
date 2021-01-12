@@ -72,7 +72,7 @@ ZSH_THEME="mortalscumbag"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux vi-mode)
+plugins=(git tmux vi-mode zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 # User configuration
@@ -112,15 +112,16 @@ if [ $current_user = "mudi"  ]; then
 fi
 
 # >>> conda initialize >>>
+# to hide default prefix: conda config --set changeps1 false
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/mudi/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/mudowoster/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/mudi/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/mudi/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/mudowoster/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/mudowoster/anaconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/mudi/anaconda3/bin:$PATH"
+        export PATH="/home/mudowoster/anaconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
