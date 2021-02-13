@@ -131,3 +131,6 @@ export LESS="$LESS -R -Q"
 
 # Add date and time to right side of prompt
 RPROMPT="[%D{%f/%m/%y} | %D{%H:%M:%S}]"
+
+# export the local bin folder
+export PATH="/home/mudowoster/bin:$PATH"

@@ -12,21 +12,11 @@ endif
 if vim_plug_just_installed
     :execute 'source '.fnameescape(vim_plug_path)
 endif
-
 " Active plugins
 call plug#begin('~/.vim/plugged')
-
-" Essential Plugin
 " colorscheme for gruvbox
 Plug 'morhetz/gruvbox'
-
 " --- Key bindings and Typing
-
-" You Complete Me. Follow installation instructions here:
-" https://github.com/ycm-core/YouCompleteMe/wiki/Full-Installation-Guide
-"Plug 'ycm-core/YouCompleteMe'
-" You can use coc instead of ycm
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " auto pairs
 Plug 'jiangmiao/auto-pairs'
 " Code commenter
@@ -37,10 +27,9 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " Fuzzy finding
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Indent lines with a character
 Plug 'junegunn/fzf.vim'
-
 " --- Syntax
-
 " Issues with syntax
 Plug 'scrooloose/syntastic'
 " Trailing white-space
@@ -49,18 +38,17 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'vimwiki/vimwiki'
 " For git diff on files
 Plug 'mhinz/vim-signify'
-
+" Show tabs
+Plug 'Yggdroot/indentLine'
 " --- Storage
-
 " Yank history navigation
 Plug 'vim-scripts/YankRing.vim'
-
 " --- Aesthetics
-
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
+" --- Copying
+Plug 'ojroques/vim-oscyank'
 call plug#end()
 
 " Install plugins the first time vim runs
@@ -69,6 +57,12 @@ if vim_plug_just_installed
     :PlugInstall
 endif
 
+" This script contains plugin configurations
+source ~/.vim/plugins.vim
+" This scrip contains mappings
+source ~/.vim/mapping.vim
+" This script is for higlights
+source ~/.vim/highlight.vim
 
 " Vim settings and mappings
 " no vi-compatible
@@ -91,7 +85,6 @@ set softtabstop=4
 set shiftwidth=4
 " columns
 set colorcolumn=80,100
-highlight ColorColumn ctermbg=0 guibg=lightgrey
 " tab length exceptions on some file types
 autocmd FileType html setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType htmldjango setlocal shiftwidth=4 tabstop=4 softtabstop=4
@@ -106,6 +99,9 @@ set hlsearch
 " set splitting orientation
 set splitbelow
 set splitright
+" show tabs and linefeeds
+set list
+set listchars=eol:¬
 " when scrolling, keep cursor 5 lines away from screen border
 set scrolloff=5
 " For visualbell
@@ -114,37 +110,9 @@ set visualbell
 set bg=dark
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
-" navigate windows with meta+hjkl
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-" run current python script
-nnoremap <F9> :w<CR>:!clear;python3 %<CR>
+hi Normal guibg=NONE ctermbg=NONE
 " Spell check
 set spell spelllang=en
-" GruvboxRedSign
-hi SpellBad term=underline cterm=underline ctermfg=167 gui=underline guifg=#fb4934
-"hi SpellBad ctermfg=167 ctermbg=237 guifg=#fb4934 guibg=#3c3836
-" GruvboxBlueSign
-hi SpellCap term=underline cterm=underline ctermfg=109 gui=underline guifg=#83a589
-"hi SpellCap ctermfg=109 ctermbg=237 guifg=#83a598 guibg=#3c3836
-" GruvboxPurpleSign
-hi SpellRare term=underline cterm=underline ctermfg=175 gui=underline guifg=#d3869b
-"hi SpellRare ctermfg=175 ctermbg=237 guifg=#d3869b guibg=#3c3836
-" GruvboxYellowSign
-hi SpellLocal term=underline cterm=underline ctermfg=214 gui=underline guifg=#fabd2f
-"hi SpellLocal ctermfg=214 ctermbg=237 guifg=#fabd2f guibg=#3c3836
-" Change colors for italic and bold in vimwiki md
-hi VimwikiItalicT cterm=undercurl gui=undercurl guisp=#fb4934
-hi VimwikiBoldT ctermfg=243 guifg=#7c6f64
-hi VimwikiBoldItalicT cterm=undercurl gui=undercurl guisp=#fb4934 ctermfg=243 guifg=#7c6f64
-hi VimwikiItalicBoldT cterm=undercurl gui=undercurl guisp=#fb4934 ctermfg=243 guifg=#7c6f64
-
-hi VimwikiItalic cterm=undercurl gui=undercurl guisp=#fb4934
-hi VimwikiBold ctermfg=243 guifg=#7c6f64
-hi VimwikiBoldItalic cterm=undercurl gui=undercurl guisp=#fb4934 ctermfg=243 guifg=#7c6f64
-hi VimwikiItalicBold cterm=undercurl gui=undercurl guisp=#fb4934 ctermfg=243 guifg=#7c6f64
 " autocompletion of files and commands behaves like shell
 set wildmode=list:longest
 " better backup, swap and undos storage
@@ -154,53 +122,3 @@ set backupdir=~/.vim/dirs/backups " where to put backup files
 set undofile                      " persistent undos - undo after you re-open the file
 set undodir=~/.vim/dirs/undos
 set viminfo+=n~/.vim/dirs/viminfo
-" store yankring history file there too
-let g:yankring_history_dir = '~/.vim/dirs/'
-" create needed directories if they don't exist
-if !isdirectory(&backupdir)
-    call mkdir(&backupdir, "p")
-endif
-if !isdirectory(&directory)
-    call mkdir(&directory, "p")
-endif
-if !isdirectory(&undodir)
-    call mkdir(&undodir, "p")
-endif
-
-map ,re :source $MYVIMRC<CR>
-
-" NerdCommenter -----------------------
-let g:NERDCommentEmptyLines = 1
-
-" vimwiki -----------------------------
-let g:vimwiki_list = [{'path': '~/',
-                     \ 'template_path': '~/vimwiki/templates/',
-                     \ 'template_default': 'default',
-                     \ 'path_html': '~/vimwiki_html/',
-                     \ 'syntax': 'markdown', 'ext': '.md',
-                     \ 'custom_wiki2html': 'vimwiki_markdown',
-                     \ 'template_ext': '.tpl'}]
-" Airline ------------------------------
-let g:airline_powerline_fonts = 0
-let g:airline_theme = 'bubblegum'
-let g:airline#extensions#whitespace#enabled = 0
-
-" Syntastic ----------------------------
-let g:syntastic_mode_map = {'mode': 'passive',
-                           \ 'active_filetypes': [],
-                           \ 'passive_filetypes': [] }
-" check syntax
-nnoremap <leader>E :SyntasticCheck<CR>
-nnoremap <leader>R :SyntasticReset<CR>
-
-" Snippets ----------------------------
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-e>"
-let g:UltiSnipsJumpForwardTrigger="<c-f>"
-let g:UltiSnipsJumpBackwardTrigger="<c-d>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-" Fuzzy finding Gfiles
-nnoremap <leader>p :GFiles<CR>
