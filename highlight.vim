@@ -1,5 +1,3 @@
-" Script for highlight settings
-highlight ColorColumn ctermbg=None guibg=lightgrey
 " GruvboxRedSign
 hi SpellBad term=underline cterm=underline ctermfg=167 gui=underline guifg=#fb4934
 " GruvboxBlueSign
@@ -19,3 +17,8 @@ hi VimwikiItalic cterm=undercurl gui=undercurl guisp=#fb4934
 hi VimwikiBold ctermfg=243 guifg=#7c6f64
 hi VimwikiBoldItalic cterm=undercurl gui=undercurl guisp=#fb4934 ctermfg=243 guifg=#7c6f64
 hi VimwikiItalicBold cterm=undercurl gui=undercurl guisp=#fb4934 ctermfg=243 guifg=#7c6f64
+
+" change vimwiki heading colors
+hi link VimwikiHeader2 GruvboxOrange
+hi link VimwikiHeader3 GruvboxPurple
+hi link VimwikiHeader4 GruvboxAqua

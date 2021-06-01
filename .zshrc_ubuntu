@@ -134,3 +134,6 @@ RPROMPT="[%D{%f/%m/%y} | %D{%H:%M:%S}]"
 
 # export the local bin folder
 export PATH="/home/mudowoster/bin:$PATH"
+
+# for backspace
+export TERMINFO=/usr/share/terminfo
