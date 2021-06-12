@@ -16,6 +16,7 @@ endif
 call plug#begin('~/.vim/plugged')
 " colorscheme for gruvbox
 Plug 'morhetz/gruvbox'
+
 " --- Key bindings and Typing
 " auto pairs
 Plug 'jiangmiao/auto-pairs'
@@ -31,6 +32,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Track the engine.
 Plug 'SirVer/ultisnips'
+" Coc.nvim
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " --- Syntax
 " Issues with syntax
