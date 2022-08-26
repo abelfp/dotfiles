@@ -32,12 +32,15 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Track the engine.
 Plug 'SirVer/ultisnips'
+" HTML
+Plug 'adelarsq/vim-matchit'
 " Coc.nvim
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Check the following resources:
+" https://github.com/fannheyward/coc-pyright
+" https://github.com/neoclide/coc.nvim
 
 " --- Syntax
-" Issues with syntax
-Plug 'scrooloose/syntastic'
 " Trailing white-space
 Plug 'bronson/vim-trailing-whitespace'
 " vimwiki
@@ -63,6 +66,8 @@ Plug 'tpope/vim-fugitive'
 " --- Copying
 " For copying
 Plug 'ojroques/vim-oscyank'
+" For pasting
+Plug 'ConradIrwin/vim-bracketed-paste'
 call plug#end()
 
 " Install plugins the first time vim runs
@@ -98,7 +103,7 @@ highlight ColorColumn ctermbg=None guibg=lightgrey
 " columns
 set colorcolumn=80,100
 " tab length exceptions on some file types
-autocmd FileType html setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType htmldjango setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType javascript setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
@@ -141,3 +146,5 @@ source ~/.vim/plugins.vim
 source ~/.vim/mapping.vim
 " This script is for higlights
 source ~/.vim/highlight.vim
+" This is for functions
+source ~/.vim/functions.vim
