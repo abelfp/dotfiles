@@ -35,7 +35,7 @@ Plug 'SirVer/ultisnips'
 " HTML
 Plug 'adelarsq/vim-matchit'
 " Coc.nvim
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Check the following resources:
 " https://github.com/fannheyward/coc-pyright
 " https://github.com/neoclide/coc.nvim
@@ -65,7 +65,7 @@ Plug 'tpope/vim-fugitive'
 
 " --- Copying
 " For copying
-Plug 'ojroques/vim-oscyank'
+Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 " For pasting
 Plug 'ConradIrwin/vim-bracketed-paste'
 call plug#end()
@@ -117,8 +117,8 @@ set hlsearch
 set splitbelow
 set splitright
 " show tabs and linefeeds
-set list
-set listchars=eol:¬
+"set list
+"set listchars=eol:¬
 " when scrolling, keep cursor 5 lines away from screen border
 set scrolloff=5
 " For visualbell

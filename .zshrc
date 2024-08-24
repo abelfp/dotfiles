@@ -76,6 +76,12 @@ plugins=(git tmux vi-mode zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 # User configuration
+# The following lines were added by compinstall
+zstyle :compinstall filename $home_dir/.zshrc
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -88,6 +94,7 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -111,34 +118,26 @@ if [ -f ~/.functions ]; then
   source ~/.functions
 fi
 
-# Allow Xming in Ubuntu subsystem in Windows
-if [ $current_user = "mudi"  ]; then
-    export DISPLAY=:0
-fi
-
-# >>> conda initialize >>>
-# to hide default prefix: conda config --set changeps1 false
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/mudowoster/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/mudowoster/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/mudowoster/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/mudowoster/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
 export LESS="$LESS -R -Q"
 
 # Add date and time to right side of prompt
 RPROMPT="[%D{%f/%m/%y} | %D{%H:%M:%S}]"
 
 # export the local bin folder
-export PATH="/home/mudowoster/bin:$PATH"
+export PATH="/home/abelfp/bin:$PATH"
 
-# for backspace
-export TERMINFO=/usr/share/terminfo
+# For node
+#[ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
+#source /usr/share/nvm/nvm.sh
+#source /usr/share/nvm/bash_completion
+#source /usr/share/nvm/install-nvm-exec
+
+# mapping for ctrl+l actually scrolling down to clean terminal
+#scroll-and-clear-screen() {
+  #local i=1
+  #while read; do ((i++)); done <<< $PS1
+  #printf '\n%.0s' {$i..$LINES}
+  #zle clear-screen
+#}
+#zle -N scroll-and-clear-screen
+#bindkey '^l' scroll-and-clear-screen

@@ -62,7 +62,7 @@ function ssh_connection() {
 }
 
 local ret_status="%(?:%{$fg_bold[green]%}:%{$fg_bold[red]%})%?%{$reset_color%}"
-PROMPT=$'$(my_conda_env)$(ssh_connection)%{$fg_bold[red]%}%n%{$reset_color%}@%{$fg_bold[yellow]%}%m%{$reset_color%}$(my_git_prompt) : %{$fg[green]%}%~%{$reset_color%}\n[${ret_status}] %# '
+PROMPT=$'$(ssh_connection)%{$fg_bold[red]%}%n%{$reset_color%}@%{$fg_bold[yellow]%}%m%{$reset_color%}$(my_git_prompt) : %{$fg[green]%}%~%{$reset_color%}\n[${ret_status}] %# '
 
 ZSH_THEME_PROMPT_RETURNCODE_PREFIX="%{$fg_bold[red]%}"
 ZSH_THEME_GIT_PROMPT_PREFIX=" $fg[white]‹ %{$fg_bold[cyan]%}"

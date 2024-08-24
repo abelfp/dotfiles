@@ -1,7 +1,4 @@
 #!/bin/bash
-alias zim-wifi='nmcli c up ZIMFlores14'
-alias set-speakers='pacmd set-default-source "alsa_input.pci-0000_00_1f.3.analog-stereo"'
-alias set-microphone='pacmd set-default-sink "alsa_output.pci-0000_00_1f.3.analog-stereo"'
 
 # git aliases
 alias git-log='git --no-pager log --graph --pretty="%Cred%h%Creset %C(bold blue)<%an>%Creset %Cgreen(%ad)%Creset -%C(auto)%d%Creset %s" --date=short'

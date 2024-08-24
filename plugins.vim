@@ -24,7 +24,7 @@ let g:vimwiki_list = [{'path': '~/',
                      \ 'custom_wiki2html': 'vimwiki_markdown',
                      \ 'template_ext': '.tpl'}]
 " Airline ------------------------------
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 let g:airline_theme = 'bubblegum'
 let g:airline#extensions#whitespace#enabled = 0
 

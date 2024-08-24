@@ -10,7 +10,7 @@ map ,re :source $MYVIMRC<CR>
 nnoremap <leader>E :SyntasticCheck<CR>
 nnoremap <leader>R :SyntasticReset<CR>
 " For copying with leader k
-vnoremap <leader>k :OSCYank<CR>
+vnoremap <leader>k :OSCYankVisual<CR>
 " Fuzzy finding Gfiles
 nnoremap <leader>p :GFiles<CR>
 " shortcut to formatting line
