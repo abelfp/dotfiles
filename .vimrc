@@ -24,27 +24,10 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdcommenter'
 " vim repeat
 Plug 'tpope/vim-repeat'
-" Snippets are separated from the engine. Add this if you want them
-Plug 'honza/vim-snippets'
-" Fuzzy finding
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-" Indent lines with a character
-Plug 'junegunn/fzf.vim'
-" Track the engine.
-Plug 'SirVer/ultisnips'
-" HTML
-Plug 'adelarsq/vim-matchit'
-" Coc.nvim
- Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Check the following resources:
-" https://github.com/fannheyward/coc-pyright
-" https://github.com/neoclide/coc.nvim
 
 " --- Syntax
 " Trailing white-space
 Plug 'bronson/vim-trailing-whitespace'
-" vimwiki
-Plug 'vimwiki/vimwiki'
 " For git diff on files
 Plug 'mhinz/vim-signify'
 " Show tabs
@@ -79,50 +62,35 @@ endif
 " Vim settings and mappings
 " no vi-compatible
 set nocompatible
-" Set no backspace for new lines or tabs
-set backspace=0
-" syntax highlight on
-syntax on
-" allow plugins by file type (required for plugins!)
-filetype plugin on
-filetype indent on
-" no word wrap
+set backspace=0" Set no backspace for new lines or tabs
+set mouse=" Fuck mouse in vim
 set nowrap
-" set number and relativenumber
 set number relativenumber
-" tabs and spaces handling
 set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-" Side of line
 set cursorline
 set culopt=number
-" Script for highlight settings
-highlight ColorColumn ctermbg=None guibg=lightgrey
-" columns
 set colorcolumn=80,100
-" tab length exceptions on some file types
+set ls=2" always show status bar
+set incsearch
+set hlsearch
+set splitbelow
+set splitright
+set list" show tabs and linefeeds
+set listchars=eol:¬
+set scrolloff=5
+set novisualbell" For visualbell
+syntax on
+filetype plugin on
+filetype indent on
+highlight ColorColumn ctermbg=None guibg=lightgrey
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType htmldjango setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType javascript setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
-" always show status bar
-set ls=2
-" incremental search
-set incsearch
-" highlighted search results
-set hlsearch
-" set splitting orientation
-set splitbelow
-set splitright
-" show tabs and linefeeds
-"set list
-"set listchars=eol:¬
-" when scrolling, keep cursor 5 lines away from screen border
-set scrolloff=5
-" For visualbell
-set visualbell
+
 " set up colorscheme
 set bg=dark
 let g:gruvbox_contrast_dark = 'hard'
@@ -146,5 +114,19 @@ source ~/.vim/plugins.vim
 source ~/.vim/mapping.vim
 " This script is for higlights
 source ~/.vim/highlight.vim
-" This is for functions
-source ~/.vim/functions.vim
+
+" Snippets are separated from the engine. Add this if you want them
+"Plug 'honza/vim-snippets'
+" Fuzzy finding
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Indent lines with a character
+"Plug 'junegunn/fzf.vim'
+" Track the engine.
+"Plug 'SirVer/ultisnips'
+" HTML
+"Plug 'adelarsq/vim-matchit'
+" Coc.nvim
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Check the following resources:
+" https://github.com/fannheyward/coc-pyright
+" https://github.com/neoclide/coc.nvim
