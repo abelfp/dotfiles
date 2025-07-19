@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+# TODO: if .oh-my-zsh folder is missing, run the installation
 # Install oh-my-zsh
 # sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
@@ -14,7 +15,7 @@ export ZSH="$(echo $home_dir)/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="mortalscumbag"
+ZSH_THEME="abelfpmortalscumbag"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -23,6 +24,7 @@ ZSH_THEME="mortalscumbag"
 # Add wisely, as too many plugins slow down shell startup.
 #
 # To install zsh-autosuggestions
+# TODO: if folder is missing, run git clone
 # git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 plugins=(git tmux vi-mode zsh-autosuggestions)
 

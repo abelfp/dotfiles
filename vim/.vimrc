@@ -24,6 +24,10 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdcommenter'
 " vim repeat
 Plug 'tpope/vim-repeat'
+" Fuzzy finding
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Indent lines with a character
+Plug 'junegunn/fzf.vim'
 
 " --- Syntax
 " Trailing white-space
@@ -117,10 +121,6 @@ source ~/.vim/highlight.vim
 
 " Snippets are separated from the engine. Add this if you want them
 "Plug 'honza/vim-snippets'
-" Fuzzy finding
-"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-" Indent lines with a character
-"Plug 'junegunn/fzf.vim'
 " Track the engine.
 "Plug 'SirVer/ultisnips'
 " HTML
