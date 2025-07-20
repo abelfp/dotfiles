@@ -46,7 +46,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-export LESS="$LESS -R -Q"
+export LESS="$LESS --no-vbell -R -Q"
 
 # Add date and time to right side of prompt
 RPROMPT="[%D{%f/%m/%y} | %D{%H:%M:%S}]"

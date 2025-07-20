@@ -28,6 +28,8 @@ Plug 'tpope/vim-repeat'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Indent lines with a character
 Plug 'junegunn/fzf.vim'
+" NerdTree
+Plug 'preservim/nerdtree'
 
 " --- Syntax
 " Trailing white-space
