@@ -53,6 +53,7 @@ RPROMPT="[%D{%f/%m/%y} | %D{%H:%M:%S}]"
 
 # export the local bin folder
 export PATH="/home/abelfp/bin:$PATH"
+export WALLPEPER="home/abelfp/.config/backgrounds/free_as_in_freedom.png"
 
 if [ "$(tty)" = "/dev/tty1" ]; then
   exec Hyprland
