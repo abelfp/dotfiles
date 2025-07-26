@@ -53,7 +53,10 @@ RPROMPT="[%D{%f/%m/%y} | %D{%H:%M:%S}]"
 
 # export the local bin folder
 export PATH="/home/abelfp/bin:$PATH"
-export WALLPEPER="home/abelfp/.config/backgrounds/free_as_in_freedom.png"
+# for japanese language
+# export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
 
 if [ "$(tty)" = "/dev/tty1" ]; then
   exec Hyprland
