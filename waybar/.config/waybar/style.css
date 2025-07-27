@@ -66,6 +66,7 @@ tooltip {
 #temperature,
 #workspaces,
 #tray,
+#custom-power,
 #backlight {
     background: #1e1e2e;
     opacity: 0.8;
@@ -98,6 +99,11 @@ tooltip {
 }
 
 #tray {
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+#custom-power {
     border-radius: 10px;
     margin-right: 10px;
 }
@@ -162,6 +168,15 @@ tooltip {
     margin-left: 10px;
     border-right: 0px;
     padding-left: 5px;
+}
+
+menu {
+    border-radius: 15px;
+    background: #161320;
+    color: #B5E8E0;
+}
+menuitem {
+    border-radius: 15px;
 }
 
 /*

@@ -21,7 +21,8 @@
         "temperature",
         "pulseaudio",
         "pulseaudio#microphone",
-        "tray"
+        "tray",
+        "custom/power"
     ],
     "hyprland/window": {
         "format": "{}"
@@ -56,9 +57,23 @@
     },
 
     "custom/wofi_launcher": {
-        "format": "🔎", //"", // Or any other icon/text you prefer
+        "format": "🔎", // magnifying glass
         "tooltip": "Launch Applications",
         "on-click": "wofi --show drun"
+    },
+
+    "custom/power": {
+        "format": "", // ⏻
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "~/.config/waybar/power_menu.xml",
+        "menu-actions": {
+            "logout": "hyprctl dispatch exit",
+            "lock": "hyprlock",
+            "suspend": "systemctl suspend",
+            "reboot": "reboot",
+            "shutdown": "shutdown -h now"
+        }
     },
 
    "custom/weather" : {
