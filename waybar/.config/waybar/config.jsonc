@@ -21,11 +21,33 @@
         "temperature",
         "pulseaudio",
         "pulseaudio#microphone",
+        "custom/notification",
         "tray",
         "custom/power"
     ],
     "hyprland/window": {
         "format": "{}"
+    },
+
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+            "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
     },
 
     "hyprland/workspaces": {
@@ -58,7 +80,7 @@
 
     "custom/wofi_launcher": {
         "format": "🔎", // magnifying glass
-        "tooltip": "Launch Applications",
+        "tooltip-format": "Launch Applications",
         "on-click": "wofi --show drun"
     },
 
@@ -93,7 +115,7 @@
     "clock": {
         "locale": "ja_JP.UTF-8",
         "format": "{:%Y年 %Om月 %Od日（%a）%H:%M}",
-        "tooltip-format": "<span size='11pt'>{calendar}</span>",
+        "tooltip-format": "<span>{calendar}</span>",
         "calendar": {
             "mode": "month",
             "mode-mon-col": 3,
@@ -104,7 +126,7 @@
                 "months": "<span color='#ffead3'><b>{}</b></span>",
                 "days": "<span color='#ecc6d9'><b>{}</b></span>",
                 "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
-                "weekdays": "<span color='#ffcc66'><u><b>  日    月    火    水    木    金    土</b></u></span>",
+                "weekdays": "<span color='#ffcc66'><u><b> 日    月   火   水   木    金    土</b></u></span>",
                 "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
             }
         }
