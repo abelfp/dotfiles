@@ -101,7 +101,9 @@
    "custom/weather" : {
         //shows the current weather and forecast
         "tooltip" : true,
-        "format" : "{}",
+        "format" : "{text}",
+        "format-alt": "{alt}",
+        "format-alt-click": "left-click",
         "interval" : 30,
         "exec" : "~/.config/waybar/scripts/waybar-wttr.py",
         "return-type" : "json"
@@ -164,7 +166,7 @@
     "temperature": {
         "thermal-zone": 1,
         "format": "{temperatureC}°C ",
-        "tooltip-format": "{temperatureF}°F ",
+        "format-alt": "{temperatureF}°F ",
         "critical-threshold": 80,
         "format-critical": "{temperatureC}°C "
     },

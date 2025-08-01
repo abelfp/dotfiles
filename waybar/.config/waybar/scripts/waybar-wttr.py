@@ -1,8 +1,8 @@
 #!/usr/bin/env python
-
 import json
-import requests
 from datetime import datetime
+
+import requests
 
 WEATHER_CODES = {
     '113': '☀️ ',
@@ -54,19 +54,15 @@ WEATHER_CODES = {
     '392': '🌧️',
     '395': '❄️ '
 }
-
-data = {}
-
-
-weather = requests.get("https://wttr.in/Santa+Barbara?format=j1").json()
+WEATHER_API = "https://wttr.in/{location}?format=j1"
 
 
 def format_time(time):
     return time.replace("00", "").zfill(2)
 
 
-def format_temp(temp):
-    return (hour['FeelsLikeF']+"°").ljust(3)
+def get_temp(temp_data, t_type="FeelsLike", scale="C"):
+    return (temp_data[f"{t_type}{scale}"] + f"°{scale}").ljust(4)
 
 
 def format_chances(hour):
@@ -80,40 +76,57 @@ def format_chances(hour):
         "chanceofthunder": "Thunder",
         "chanceofwindy": "Wind"
     }
-
     conditions = []
     for event in chances.keys():
         if int(hour[event]) > 0:
-            conditions.append(chances[event]+" "+hour[event]+"%")
+            conditions.append(f"{chances[event]} {hour[event]}%")
     return ", ".join(conditions)
 
-tempint = int(weather['current_condition'][0]['FeelsLikeF'])
-extrachar = ''
-if tempint > 0 and tempint < 10:
-    extrachar = '+'
 
+def main(location="Santa Barbara"):
+    loc = location.replace(" ", "+")
+    w_data = requests.get(WEATHER_API.format(location=loc)).json()
+    curr_cond = w_data["current_condition"][0]
+    curr_temp = get_temp(curr_cond)
+    alt_curr_temp = get_temp(curr_cond, scale="F")
 
-data['text'] = ' '+WEATHER_CODES[weather['current_condition'][0]['weatherCode']] + \
-    " "+extrachar+weather['current_condition'][0]['FeelsLikeF']+"°"
+    # get text to display in waybar
+    text = f" {WEATHER_CODES[curr_cond['weatherCode']]} {curr_temp}"
+    alt = f" {WEATHER_CODES[curr_cond['weatherCode']]} {alt_curr_temp}"
 
-data['tooltip'] = f"<b>{weather['current_condition'][0]['weatherDesc'][0]['value']} {weather['current_condition'][0]['temp_F']}°</b>\n"
-data['tooltip'] += f"Feels like: {weather['current_condition'][0]['FeelsLikeF']}°\n"
-data['tooltip'] += f"Wind: {weather['current_condition'][0]['windspeedKmph']}Km/h\n"
-data['tooltip'] += f"Humidity: {weather['current_condition'][0]['humidity']}%\n"
-for i, day in enumerate(weather['weather']):
-    data['tooltip'] += f"\n<b>"
-    if i == 0:
-        data['tooltip'] += "Today, "
-    if i == 1:
-        data['tooltip'] += "Tomorrow, "
-    data['tooltip'] += f"{day['date']}</b>\n"
-    data['tooltip'] += f"⬆️ {day['maxtempF']}° ⬇️ {day['mintempF']}° "
-    data['tooltip'] += f"🌅 {day['astronomy'][0]['sunrise']} 🌇 {day['astronomy'][0]['sunset']}\n"
-    for hour in day['hourly']:
+    # get tooltip details
+    tooltip = (
+        f"<b>{curr_cond['weatherDesc'][0]['value']} {curr_temp} in {location}</b>\n"
+        f"Feels like: {curr_temp}\n"
+        f"Wind: {curr_cond['windspeedKmph']}Km/h\n"
+        f"Humidity: {curr_cond['humidity']}%\n"
+    )
+    for i, day in enumerate(w_data['weather']):
+        tooltip += f"\n<b>"
         if i == 0:
-            if int(format_time(hour['time'])) < datetime.now().hour-2:
-                continue
-        data['tooltip'] += f"{format_time(hour['time'])} {WEATHER_CODES[hour['weatherCode']]} {format_temp(hour['FeelsLikeF'])} {hour['weatherDesc'][0]['value']}, {format_chances(hour)}\n"
+            tooltip += "Today, "
+        if i == 1:
+            tooltip += "Tomorrow, "
+        tooltip += f"{day['date']}</b>\n"
+        tooltip += f"⬆️ {get_temp(day, t_type='maxtemp')} ⬇️ {get_temp(day, t_type='mintemp')} "
+        tooltip += f"🌅 {day['astronomy'][0]['sunrise']} 🌇 {day['astronomy'][0]['sunset']}\n"
+        for hour in day['hourly']:
+            if i == 0:
+                if int(format_time(hour['time'])) < datetime.now().hour-2:
+                    continue
+            tooltip += (
+                f"{format_time(hour['time'])}"
+                f" {WEATHER_CODES[hour['weatherCode']]} {get_temp(hour)}"
+                f" {hour['weatherDesc'][0]['value'].strip()}, {format_chances(hour)}\n"
+            )
+    formatted_data = {
+        "text": text,
+        "alt": alt,
+        "tooltip": tooltip,
+    }
+    return formatted_data
 
 
-print(json.dumps(data))
+if __name__ == "__main__":
+    display_data = main()
+    print(json.dumps(display_data))

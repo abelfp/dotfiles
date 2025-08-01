@@ -40,6 +40,8 @@ Plug 'mhinz/vim-signify'
 Plug 'Yggdroot/indentLine'
 " Autocomplete with tabs
 Plug 'ervandew/supertab'
+" Coc.nvim
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " --- Storage
 " Yank history navigation
@@ -132,3 +134,4 @@ source ~/.vim/highlight.vim
 " Check the following resources:
 " https://github.com/fannheyward/coc-pyright
 " https://github.com/neoclide/coc.nvim
+" sudo pacman -S nodejs-lts-jod npm
