@@ -116,7 +116,7 @@
 
     "clock": {
         "locale": "ja_JP.UTF-8",
-        "format": "{:%Y年 %Om月 %Od日（%a）%H:%M}",
+        "format": "{:%Om月 %Od日（%a）%H:%M}",
         "tooltip-format": "<span>{calendar}</span>",
         "calendar": {
             "mode": "month",
