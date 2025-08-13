@@ -16,6 +16,7 @@ endif
 call plug#begin('~/.vim/plugged')
 " colorscheme for gruvbox
 Plug 'morhetz/gruvbox'
+Plug 'ap/vim-css-color'
 
 " --- Key bindings and Typing
 " auto pairs

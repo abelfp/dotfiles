@@ -57,6 +57,7 @@ tooltip {
 #custom-wofi_launcher,
 #custom-weather,
 #custom-notification,
+#mpd,
 #window,
 #clock,
 #pulseaudio,
@@ -166,6 +167,13 @@ tooltip {
 }
 
 #custom-weather {
+    border-radius: 10px;
+    margin-left: 10px;
+    border-right: 0px;
+    padding-left: 5px;
+}
+
+#mpd {
     border-radius: 10px;
     margin-left: 10px;
     border-right: 0px;

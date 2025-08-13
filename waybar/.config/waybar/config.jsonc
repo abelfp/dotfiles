@@ -8,6 +8,7 @@
     "height": 47,
     "modules-left": [
         "clock",
+        "mpd",
         "custom/weather",
         "custom/wofi_launcher",
         "hyprland/workspaces"
@@ -78,6 +79,36 @@
         }
     },
 
+    "mpd": {
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+        "max-length": 20,
+        "format-disconnected": "Disconnected ",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "interval": 2,
+        "consume-icons": {
+            "on": " " // Icon shows only when "consume" is on
+        },
+        "random-icons": {
+            "off": "<span color='#f53c3c'></span> ", // Icon grayed out when "random" is off
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "on-click": "mpc toggle",
+        "on-click-right": "mpc next",
+        "on-click-middle": "mpc prev",
+        "tooltip-format": "{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+        "tooltip-format-disconnected": "MPD (disconnected)"
+    },
+
     "custom/wofi_launcher": {
         "format": "🔎", // magnifying glass
         "tooltip-format": "Launch Applications",
@@ -116,7 +147,7 @@
 
     "clock": {
         "locale": "ja_JP.UTF-8",
-        "format": "{:%Om月 %Od日（%a）%H:%M}",
+        "format": "{:%d日 %H:%M}",
         "tooltip-format": "<span>{calendar}</span>",
         "calendar": {
             "mode": "month",
