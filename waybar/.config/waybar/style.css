@@ -48,27 +48,25 @@ tooltip {
     border-radius: 10px;
 }
 
-/*
- *#custom-power_profile,
- */
-/*
- *#battery,
- */
-#custom-wofi_launcher,
-#custom-weather,
-#custom-notification,
-#mpd,
-#window,
-#clock,
-#pulseaudio,
-#network,
+#backlight,
+#battery,
 #bluetooth,
+#clock,
 #cpu,
-#memory,
-#temperature,
-#workspaces,
-#tray,
+#custom-notification,
 #custom-power,
+#custom-power_profile,
+#custom-weather,
+#custom-wofi_launcher,
+#memory,
+#mpd,
+#network,
+#pulseaudio,
+#temperature,
+#tray,
+#window,
+#workspaces,
+
 #backlight {
     background: #1e1e2e;
     opacity: 0.8;
@@ -196,20 +194,16 @@ menuitem {
     border-radius: 15px;
 }
 
-/*
- *#battery {
- *    color: #a6e3a1;
- *    border-radius: 0 10px 10px 0;
- *    margin-right: 10px;
- *    border-left: 0px;
- *}
- */
+#battery {
+    color: #a6e3a1;
+    border-radius: 0 10px 10px 0;
+    margin-right: 10px;
+    border-left: 0px;
+}
 
-/*
- *#custom-power_profile {
- *    color: #a6e3a1;
- *    border-left: 0px;
- *    border-right: 0px;
- *}
- */
+#custom-power_profile {
+    color: #a6e3a1;
+    border-left: 0px;
+    border-right: 0px;
+}
 

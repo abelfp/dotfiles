@@ -139,9 +139,9 @@ Remember to change `amd-ucode` for `intel-ucode` depending on your CPU.
 # pacstrap /mnt base linux linux-firmware amd-ucode sof-firmware networkmanager \
     network-manager-applet base-devel grub efibootmgr git kitty firefox vim \
     zsh man-db man-pages texinfo tmux stow bluez bluez-utils blueman \
-    pipewire-pulse pamixer wofi waybar nautilus hyprland tree solaar htop \
-    fastfetch sed python-requests nodejs-lts-jod npm ttf-font-awesome \
-    ttf-jetbrains-mono-nerd noto-fonts-emoji
+    pipewire-pulse pamixer wofi waybar nautilus hyprland mpd mpc ncmpcpp tree \
+    solaar htop fastfetch sed python-requests nodejs-lts-jod npm \
+    ttf-font-awesome ttf-jetbrains-mono-nerd noto-fonts-emoji
 ```
 
 A couple notes:
@@ -287,13 +287,19 @@ Set up network using `nmcli` like so
 # nmcli device wifi connect NetworkName --ask
 ```
 
+Also let's make sure to enable `mpd` for our user
+
+```
+# systemctl --user enable mpd
+```
+
 ### yay Packages
 
 After logging in with your new user, you should install `yay`, see
 https://github.com/Jguer/yay
 
 ```
-# sudo pacman -S --needed git base-devel  # already from base install
+sudo pacman -S --needed git base-devel  # already from base install
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
@@ -334,7 +340,11 @@ Then we can install dropbox and dropbox-cli with `yay`
 yay -S dropbox dropbox-cli
 ```
 
-Our hyrpland config already has an exec-once for dropbox.
+Our hyrpland config already has an exec-once for dropbox, but you might want to
+run the following command for good measure:
+```
+dropbox-cli autostart y
+```
 
 ## SSH Setup for Github
 
@@ -354,11 +364,11 @@ steps
 2. Uncomment the relevant locales in `/etc/locale.gen` using sudo, you want to
    uncomment UTF-8 locales, like `ja_JP.UTF-8 UTF-8` and `es_ES.UTF-8 UTF-8`
 ```bash
-$ sudo vim /etc/locale.gen
+sudo vim /etc/locale.gen
 ```
 3. Afterwards, regenerate the locales
 ```
-$ sudo locale-gen
+sudo locale-gen
 ```
 
 ### Japanase & Spanish

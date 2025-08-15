@@ -26,8 +26,61 @@
         "tray",
         "custom/power"
     ],
-    "hyprland/window": {
-        "format": "{}"
+
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "on-scroll-up": "brightnessctl set 1%+",
+        "on-scroll-down": "brightnessctl set 1%-",
+        "min-length": 6
+    },
+
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+
+    "bluetooth": {
+        "format": " {status}",
+        "format-disabled": "", // an empty format will hide the module
+        "format-connected": " {num_connections}",
+        "tooltip-format": "{device_alias}",
+        "tooltip-format-connected": " {device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}"
+    },
+
+    "clock": {
+        "locale": "ja_JP.UTF-8",
+        "format": "{:%d日 %H:%M}",
+        "tooltip-format": "<span>{calendar}</span>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "",
+            "on-scroll": 1,
+            "on-click-right": "mode",
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><u><b> 日    月   火   水   木    金    土</b></u></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        }
+    },
+
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
     },
 
     "custom/notification": {
@@ -49,70 +102,6 @@
         "on-click": "swaync-client -t -sw",
         "on-click-right": "swaync-client -d -sw",
         "escape": true
-    },
-
-    "hyprland/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "on-click": "activate",
-        "warp-on-scroll": false,
-        "format": "{name}",
-        /*
-         *"format": "{name}: {icon}",
-         *"format-icons": {
-         *    "urgent": "",
-         *    "active": "",
-         *    "default": ""
-         *},
-         */
-        "persistent_workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": [],
-            "6": [],
-            "7": [],
-            "8": [],
-            "9": [],
-            "10": []
-        }
-    },
-
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
-        "max-length": 20,
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "interval": 2,
-        "consume-icons": {
-            "on": " " // Icon shows only when "consume" is on
-        },
-        "random-icons": {
-            "off": "<span color='#f53c3c'></span> ", // Icon grayed out when "random" is off
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "on-click": "mpc toggle",
-        "on-click-right": "mpc next",
-        "on-click-middle": "mpc prev",
-        "tooltip-format": "{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
-        "tooltip-format-disconnected": "MPD (disconnected)"
-    },
-
-    "custom/wofi_launcher": {
-        "format": "🔎", // magnifying glass
-        "tooltip-format": "Launch Applications",
-        "on-click": "wofi --show drun"
     },
 
     "custom/power": {
@@ -140,29 +129,87 @@
         "return-type" : "json"
     },
 
-    "tray": {
-        "icon-size": 20,
-        "spacing": 10
+    "custom/wofi_launcher": {
+        "format": "🔎", // magnifying glass
+        "tooltip-format": "Launch Applications",
+        "on-click": "wofi --show drun"
     },
 
-    "clock": {
-        "locale": "ja_JP.UTF-8",
-        "format": "{:%d日 %H:%M}",
-        "tooltip-format": "<span>{calendar}</span>",
-        "calendar": {
-            "mode": "month",
-            "mode-mon-col": 3,
-            "weeks-pos": "",
-            "on-scroll": 1,
-            "on-click-right": "mode",
-            "format": {
-                "months": "<span color='#ffead3'><b>{}</b></span>",
-                "days": "<span color='#ecc6d9'><b>{}</b></span>",
-                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
-                "weekdays": "<span color='#ffcc66'><u><b> 日    月   火   水   木    金    土</b></u></span>",
-                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
-            }
+    "hyprland/window": {
+        "format": "{}"
+    },
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate",
+        "warp-on-scroll": false,
+        "format": "{name}",
+        "persistent_workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": [],
+            "10": []
         }
+    },
+
+    "memory": {
+        "format": "{}% "
+    },
+
+    "mpd": {
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+        "max-length": 40,
+        "format-disconnected": "Disconnected ",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "interval": 2,
+        "consume-icons": {
+            "on": " " // Icon shows only when "consume" is on
+        },
+        "random-icons": {
+            "off": "<span color='#f53c3c'></span> ", // Icon grayed out when "random" is off
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "on-click": "mpc toggle",
+        "on-click-right": "mpc next",
+        "on-click-middle": "mpc random",
+        "tooltip-format": "{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+        "tooltip-format-disconnected": "MPD (disconnected)"
+    },
+
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "  {signalStrength}%",
+        "format-ethernet": "{ipaddr}/{cidr}",
+        "tooltip-format": "{essid} - {ifname} via {gwaddr}",
+        "format-linked": "{ifname} (No IP)",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}"
+    },
+
+    "custom/power_profile":{
+        //shows the current power profile and switches to next on click
+        "exec": "asusctl profile -p | sed s:'Active profile is'::",
+        "interval": 30,
+        "format": "󰈐{}",
+        "on-click": "asusctl profile -n; pkill -SIGRTMIN+8 waybar",
+        "signal": 8
     },
 
     "pulseaudio": {
@@ -202,69 +249,9 @@
         "format-critical": "{temperatureC}°C "
     },
 
-    "memory": {
-        "format": "{}% "
-    },
-
-    "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
-    },
-
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "  {signalStrength}%",
-        "format-ethernet": "{ipaddr}/{cidr}",
-        "tooltip-format": "{essid} - {ifname} via {gwaddr}",
-        "format-linked": "{ifname} (No IP)",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}"
-    },
-
-    "bluetooth": {
-        "format": " {status}",
-        "format-disabled": "", // an empty format will hide the module
-        "format-connected": " {num_connections}",
-        "tooltip-format": "{device_alias}",
-        "tooltip-format-connected": " {device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}"
+    "tray": {
+        "icon-size": 20,
+        "spacing": 10
     }
-
-    /*
-     *"backlight": {
-     *    "device": "intel_backlight",
-     *    "format": "{icon} {percent}%",
-     *    "format-icons": ["󰃞", "󰃟", "󰃠"],
-     *    "on-scroll-up": "brightnessctl set 1%+",
-     *    "on-scroll-down": "brightnessctl set 1%-",
-     *    "min-length": 6
-     *},
-     */
-
-    /*
-     *"battery": {
-     *    "states": {
-     *        "good": 95,
-     *        "warning": 30,
-     *        "critical": 20
-     *    },
-     *    "format": "{icon} {capacity}%",
-     *    "format-charging": " {capacity}%",
-     *    "format-plugged": " {capacity}%",
-     *    "format-alt": "{time} {icon}",
-     *    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-     *},
-     */
-
-    /*
-     *"custom/power_profile":{
-     *    //shows the current power profile and switches to next on click
-     *    "exec": "asusctl profile -p | sed s:'Active profile is'::",
-     *    "interval": 30,
-     *    "format": "󰈐{}",
-     *    "on-click": "asusctl profile -n; pkill -SIGRTMIN+8 waybar",
-     *    "signal": 8
-     *},
-     */
 
 }
