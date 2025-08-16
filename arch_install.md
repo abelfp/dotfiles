@@ -287,6 +287,12 @@ Set up network using `nmcli` like so
 # nmcli device wifi connect NetworkName --ask
 ```
 
+Update system
+
+```
+# pacman -Syu
+```
+
 Also let's make sure to enable `mpd` for our user
 
 ```
@@ -309,8 +315,10 @@ and then install the following packages:
 
 ```
 yay -S hyprshot hyprlock hyrpidle hyprpaper swaync nwg-look \
-    catppuccin-gtk-theme-mocha brave-bin
+    catppuccin-gtk-theme-mocha brave-bin gcalcli
 ```
+
+Use `nwg-look` or `GTK Settings` to change color scheme and other things.
 
 ### Dotfiles
 

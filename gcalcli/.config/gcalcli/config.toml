@@ -1,0 +1,7 @@
+#:schema https://raw.githubusercontent.com/insanum/gcalcli/HEAD/data/config-schema.json
+[calendars]
+default-calendars = ["Personal", "Professional Account", "Imelda's Calendar", "mudoroy@gmail.com", "Birthdays"]
+ignore-calendars = ["Holidays in United States", "Holidays in Mexico"]
+
+[output]
+week-start = "monday"
