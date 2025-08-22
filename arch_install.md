@@ -67,7 +67,8 @@ nvme0n1     259:0    0 931.5G  0 disk
 in a later step.
 
 Within `cfdisk` we will select `[Delete]` for every existing partition in the
-disk and then press the key `d` for each to make `Free space`.
+disk and you might need to press the key `d` for each to make `Free space`
+(this last part can vary between systems).
 
 After that, we will create 3 different partitions from the one `Free space`
 disk, like so:
@@ -324,6 +325,39 @@ Use `nwg-look` or `GTK Settings` to change color scheme and other things.
 
 Clone dotfiles and use `stow`, see README.md
 
+## SSH Setup for Github
+In order to set up SSH for github, we need to generate our ssh keys and add
+it with `ssh-add`:
+
+```
+ssh-keygen -t ed25519 -C "emailAddress"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+```
+
+Then in Github, we need to creater an ssh key/setting and add the contents of
+`~/.ssh/id_ed25519.pub`
+
+To test it, simply try the following command
+```
+ssh -T git@github.com
+```
+
+I also added the following to `~/.ssh/config`
+```
+Host *
+    AddKeysToAgent yes
+    IdentityFile ~/.ssh/id_ed25519
+```
+
+Note: It might be a good idea to see how you can use `pass` to store ssh key
+passphrase.
+
+## Hibernation
+
+I did not look into using hibernation much. Hyprland doesn't seem to work out
+of the box with hibernation, but suspend does, so I am relying on suspend.
+
 ## Dropbox Install
 
 See https://wiki.archlinux.org/title/Dropbox
@@ -354,9 +388,45 @@ run the following command for good measure:
 dropbox-cli autostart y
 ```
 
-## SSH Setup for Github
+
+## Neomutt and mutt-wizard
+
+```
+yay -S mutt-wizard goimapnotify lynx abook notmuch urlview
+```
+
+Follow mutt-wizard instructions, you will need to create a new pgp key:
+```
+gpg --full-gen-key
+pass init yourgpgemail
+```
+
+Then we can use `mw -a emailAccount -n "Full Name"` to add each account (you
+will be prompted for the password).
+
+Then we can use `mbsync emailAccount` and get all of our email. This will take
+a while.
+
+Maybe after all of that, we can do `notmuch setup`.
+
+Use `mailsync` to get mail afterwards.
+
+Update `.gnupg/gpg-agent.conf` to cache passwords for 7 days:
+```
+default-cache-ttl 604800
+max-cache-ttl 604800
+```
+
+### Useful Neomutt and Email-Related Commands
 
 
+## Google Calendar
+
+```
+yay -S gcalcli
+```
+
+Follow instructions.
 
 ## Additional Languages
 
@@ -392,6 +462,10 @@ Our .zshrc file already export relevant variables and hyprland starts `fcitx`,
 so all you have to do is open `fcitx5-configtool` and add Mozc for Japanese
 and Spanish keyboards.
 
+Keyboards:
+- Keyboard - Spanish
+- Mozc
+
 You should be able to switch between languages with CTRL + SPACE.
 
 #### Hyprland
@@ -411,9 +485,7 @@ it's easier to set up everything through FCITX
 
 ## Laptop Specific Notes
 
-For Thinkpad Laptop, use the `thinkpad-laptop` branch.
-
-You might want to install brightnessctl, and other similar things.
+For Thinkpad Laptop, use the `thinkpad-e14` branch.
 
 ## Resources
 
