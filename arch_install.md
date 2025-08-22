@@ -350,6 +350,18 @@ Host *
     IdentityFile ~/.ssh/id_ed25519
 ```
 
+You will also need to set up gloabl configs for git, like so:
+```
+git --global user.email "emailAddress"
+git --global user.name "FullName"
+```
+
+If you initially cloned a repository with https, then you can change it to use
+ssh with the following command
+```
+git remote set-url origin git@github.com:userName/packageName.git
+```
+
 Note: It might be a good idea to see how you can use `pass` to store ssh key
 passphrase.
 
