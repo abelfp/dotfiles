@@ -136,12 +136,13 @@ install.
 Remember to change `amd-ucode` for `intel-ucode` depending on your CPU.
 
 ```
-# pacstrap /mnt base linux linux-firmware amd-ucode sof-firmware networkmanager \
+# pacstrap /mnt base linux linux-firmware intel-ucode sof-firmware networkmanager \
     network-manager-applet base-devel grub efibootmgr git kitty firefox vim \
     zsh man-db man-pages texinfo tmux stow bluez bluez-utils blueman \
     pipewire-pulse pamixer wofi waybar nautilus hyprland mpd mpc ncmpcpp tree \
     solaar htop fastfetch sed python-requests nodejs-lts-jod npm \
-    ttf-font-awesome ttf-jetbrains-mono-nerd noto-fonts-emoji
+    brightnessctl power-profiles-daemon ttf-font-awesome \
+    ttf-jetbrains-mono-nerd noto-fonts-emoji
 ```
 
 A couple notes:
@@ -253,6 +254,7 @@ services like Wifi and bluetooth
 ```
 # systemctl enable NetworkManager
 # systemctl enable bluetooth
+# systemctl enable power-profiles-daemon
 ```
 
 ### Bootloader
@@ -324,6 +326,9 @@ Use `nwg-look` or `GTK Settings` to change color scheme and other things.
 
 Clone dotfiles and use `stow`, see README.md
 
+## SSH Setup for Github
+
+
 ## Dropbox Install
 
 See https://wiki.archlinux.org/title/Dropbox
@@ -353,10 +358,6 @@ run the following command for good measure:
 ```
 dropbox-cli autostart y
 ```
-
-## SSH Setup for Github
-
-
 
 ## Additional Languages
 

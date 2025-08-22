@@ -55,7 +55,7 @@ tooltip {
 #cpu,
 #custom-notification,
 #custom-power,
-#custom-power_profile,
+#power-profiles-daemon,
 #custom-weather,
 #custom-wofi_launcher,
 #memory,
@@ -76,19 +76,27 @@ tooltip {
     border: 1px solid #181825;
 }
 
-#temperature {
-    border-radius: 10px 0px 0px 10px;
-}
-
 #cpu {
     color: #c4a484;
     border-radius: 10px 0px 0px 10px;
 }
 #memory {
     color: #2e8b57;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#temperature {
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#battery {
+    color: #a6e3a1;
     border-radius: 0px 10px 10px 0px;
     margin-right: 10px
 }
+
 
 #temperature.critical {
     color: #eba0ac;
@@ -194,14 +202,7 @@ menuitem {
     border-radius: 15px;
 }
 
-#battery {
-    color: #a6e3a1;
-    border-radius: 0 10px 10px 0;
-    margin-right: 10px;
-    border-left: 0px;
-}
-
-#custom-power_profile {
+#power-profiles-daemon {
     color: #a6e3a1;
     border-left: 0px;
     border-right: 0px;
