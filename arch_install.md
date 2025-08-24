@@ -318,7 +318,7 @@ makepkg -si
 and then install the following packages:
 
 ```
-yay -S hyprshot hyprlock hyrpidle hyprpaper swaync nwg-look \
+yay -S hyprshot hyprlock hyrpidle hyprpaper hyprsunset swaync nwg-look \
     catppuccin-gtk-theme-mocha brave-bin gcalcli
 ```
 

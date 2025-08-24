@@ -83,7 +83,7 @@ def format_chances(hour):
     return ", ".join(conditions)
 
 
-def main(location="Santa Barbara"):
+def main(location=""):
     loc = location.replace(" ", "+")
     w_data = requests.get(WEATHER_API.format(location=loc)).json()
     curr_cond = w_data["current_condition"][0]
