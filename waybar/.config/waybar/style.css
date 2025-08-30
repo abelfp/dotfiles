@@ -48,14 +48,11 @@ tooltip {
     border-radius: 10px;
 }
 
-#backlight,
-#battery,
 #bluetooth,
 #clock,
 #cpu,
 #custom-notification,
 #custom-power,
-#custom-power_profile,
 #custom-weather,
 #custom-wofi_launcher,
 #memory,
@@ -92,10 +89,6 @@ tooltip {
 
 #temperature.critical {
     color: #eba0ac;
-}
-
-#backlight {
-    border-radius: 10px 0px 0px 10px;
 }
 
 #tray {
@@ -193,17 +186,3 @@ menu {
 menuitem {
     border-radius: 15px;
 }
-
-#battery {
-    color: #a6e3a1;
-    border-radius: 0 10px 10px 0;
-    margin-right: 10px;
-    border-left: 0px;
-}
-
-#custom-power_profile {
-    color: #a6e3a1;
-    border-left: 0px;
-    border-right: 0px;
-}
-

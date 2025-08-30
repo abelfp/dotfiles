@@ -139,7 +139,7 @@ Remember to change `amd-ucode` for `intel-ucode` depending on your CPU.
 ```
 # pacstrap /mnt base linux linux-firmware amd-ucode sof-firmware networkmanager \
     network-manager-applet base-devel grub efibootmgr git kitty firefox vim \
-    zsh man-db man-pages texinfo tmux stow bluez bluez-utils blueman \
+    zsh man-db man-pages texinfo tmux stow bluez bluez-utils blueman rsync \
     pipewire-pulse pamixer wofi waybar nautilus hyprland mpd mpc ncmpcpp tree \
     solaar htop fastfetch sed python-requests nodejs-lts-jod npm \
     ttf-font-awesome ttf-jetbrains-mono-nerd noto-fonts-emoji
@@ -254,6 +254,7 @@ services like Wifi and bluetooth
 ```
 # systemctl enable NetworkManager
 # systemctl enable bluetooth
+# systemctl enable sshd
 ```
 
 ### Bootloader
@@ -288,6 +289,18 @@ Set up network using `nmcli` like so
 # nmcli device wifi connect NetworkName --ask
 ```
 
+Maybe also disable Wi-Fi power savings for faster internet?
+
+Add the following to `/etc/NetworkManager/conf.d/wifi-powersave.conf`
+```
+[connection]
+wifi.powersave = 2
+```
+
+and restart NetworkManager.
+
+
+
 Update system
 
 ```
@@ -315,7 +328,7 @@ makepkg -si
 and then install the following packages:
 
 ```
-yay -S hyprshot hyprlock hyrpidle hyprpaper swaync nwg-look \
+yay -S hyprshot hyprlock hyrpidle hyprpaper hyprsunset swaync nwg-look \
     catppuccin-gtk-theme-mocha brave-bin gcalcli
 ```
 
@@ -404,7 +417,7 @@ dropbox-cli autostart y
 ## Neomutt and mutt-wizard
 
 ```
-yay -S mutt-wizard goimapnotify lynx abook notmuch urlview
+yay -S goimapnotify lynx abook notmuch urlview mutt-wizard
 ```
 
 Follow mutt-wizard instructions, you will need to create a new pgp key:
@@ -419,11 +432,41 @@ will be prompted for the password).
 Then we can use `mbsync emailAccount` and get all of our email. This will take
 a while.
 
+To enable notification, you will want to create a config file per email address
+and store them under `~/.config/imapnotify/emailAddress.yaml`:
+
+```
+{
+  "host": "imap.gmail.com",
+  "port": 993,
+  "tls": true,
+  "tlsOptions": {
+    "rejectUnauthorized": false
+  },
+  "username": "username@gmail.com",
+  "password": "",
+    "passwordCmd": "pass username@gmail.com | head -n1",
+  "onNewMail": "mailsync",
+  "onNewMailPost": "",
+  "boxes": [ "INBOX" ]
+}
+```
+
+Then enable and start one of the services (only one synce `mbsync` can't run
+multiple times at the same time):
+```
+systemctl --user enable goimapnotify@emailAddress.service
+systemctl --user start goimapnotify@emailAddress.service
+systemctl --user status goimapnotify@emailAddress.service
+```
+
+We can also look into installing `imagemagick` to see images inside neomutt.
+
 Maybe after all of that, we can do `notmuch setup`.
 
 Use `mailsync` to get mail afterwards.
 
-Update `.gnupg/gpg-agent.conf` to cache passwords for 7 days:
+Update `~/.gnupg/gpg-agent.conf` to cache passwords for 7 days:
 ```
 default-cache-ttl 604800
 max-cache-ttl 604800
