@@ -37,6 +37,7 @@ compinit
 # end of compinstall
 
 export EDITOR='vim'
+export BROWSER='firefox'
 
 # git aliases
 alias git-log='git --no-pager log --graph --pretty="%Cred%h%Creset %C(bold blue)<%an>%Creset %Cgreen(%ad)%Creset -%C(auto)%d%Creset %s" --date=short'

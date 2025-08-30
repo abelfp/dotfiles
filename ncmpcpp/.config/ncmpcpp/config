@@ -1,0 +1,6 @@
+visualizer_color = blue, cyan, green, yellow, magenta, red
+#visualizer_color = red, magenta, yellow, green, cyan, blue
+visualizer_look = ▮●
+visualizer_type = spectrum
+# spectrum/wave/wave_filled/ellipse
+visualizer_spectrum_smooth_look = yes

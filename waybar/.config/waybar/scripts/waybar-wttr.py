@@ -89,6 +89,7 @@ def main(location=""):
     curr_cond = w_data["current_condition"][0]
     curr_temp = get_temp(curr_cond)
     alt_curr_temp = get_temp(curr_cond, scale="F")
+    nearest_loc = location if location else w_data["nearest_area"][0]["areaName"][0]["value"]
 
     # get text to display in waybar
     text = f" {WEATHER_CODES[curr_cond['weatherCode']]} {curr_temp}"
@@ -96,7 +97,7 @@ def main(location=""):
 
     # get tooltip details
     tooltip = (
-        f"<b>{curr_cond['weatherDesc'][0]['value']} {curr_temp} in {location}</b>\n"
+        f"<b>{curr_cond['weatherDesc'][0]['value']} {curr_temp} in {nearest_loc}</b>\n"
         f"Feels like: {curr_temp}\n"
         f"Wind: {curr_cond['windspeedKmph']}Km/h\n"
         f"Humidity: {curr_cond['humidity']}%\n"
