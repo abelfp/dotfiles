@@ -145,6 +145,11 @@ Remember to change `amd-ucode` for `intel-ucode` depending on your CPU.
     ttf-font-awesome ttf-jetbrains-mono-nerd noto-fonts-emoji
 ```
 
+For laptops, you might want to install the following packages as well:
+```
+brightnessctl power-profiles-daemon
+```
+
 A couple notes:
 
 - `blueman` is the GUI for bluetooth connection
@@ -255,6 +260,12 @@ services like Wifi and bluetooth
 # systemctl enable NetworkManager
 # systemctl enable bluetooth
 # systemctl enable sshd
+```
+
+If you installed other packages, like power-profiles-daemon, you can start the
+service now:
+```
+# systemctl enable power-profiles-daemon
 ```
 
 ### Bootloader
@@ -540,7 +551,7 @@ it's easier to set up everything through FCITX
 
 ## Laptop Specific Notes
 
-For Thinkpad Laptop, use the `thinkpad-e14` branch.
+for 
 
 ## Resources
 
