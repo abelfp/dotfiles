@@ -40,6 +40,11 @@ let g:vim_json_syntax = 0
 let g:indentLine_concealcursor = ""
 let g:indentLIne_conceallevel = 2
 
+" Settings for markdown
+let g:markdown_fenced_languages = ['html', 'python', 'sql', 'bash=sh', 'json']
+let g:markdown_syntax_conceal = 0
+let g:markdown_minlines = 100
+
 " For kitty
 "let &t_ut=''
 " for screen loading

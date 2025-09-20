@@ -51,7 +51,7 @@ what disk we are partitioning.
 
 Let's start by using `lsblk` to see the devices in our computer.
 
-```
+```bash
 # lsblk
 
 NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
@@ -90,21 +90,21 @@ Now, let's format each of the partitions
 __Root Partition__
 
 Let's use the Linux filesystem for the root partition (the biggest of them all)
-```
+```bash
 # mkfs.ext4 /path/to/root  # something like /dev/nvme0n1p3
 ```
 
 __Boot Partition__
 
 We use FAT32 for boot partition
-```
+```bash
 # mkfs.fat -F 32 /path/to/boot  # something like /dev/nvme0n1p1
 ```
 
 __SWAP Partition__
 
 We make swap type
-```
+```bash
 # mkswap /path/to/swap  # something like /dev/nvme0n1p2
 ```
 
@@ -114,18 +114,18 @@ Now that we have repartitioned the disk and change the file type for each
 partition, we can mount all partitions.
 
 First, let's mount the `root` partition, most commonly to `/mnt`
-```
+```bash
 # mount /path/to/root /mnt
 ```
 
 Second, let's mount the boot partition
-```
+```bash
 # mkdir -p /mnt/boot/efi
 # mount /path/to/boot /mnt/boot/efi
 ```
 
 Finally, turn on the SWAP partition
-```
+```bash
 # swapon /path/to/swap
 ```
 
@@ -136,7 +136,7 @@ install.
 
 Remember to change `amd-ucode` for `intel-ucode` depending on your CPU.
 
-```
+```bash
 # pacstrap /mnt base linux linux-firmware amd-ucode sof-firmware networkmanager \
     network-manager-applet base-devel grub efibootmgr git kitty firefox vim \
     zsh man-db man-pages texinfo tmux stow bluez bluez-utils blueman rsync \
@@ -146,9 +146,9 @@ Remember to change `amd-ucode` for `intel-ucode` depending on your CPU.
 ```
 
 For laptops, you might want to install the following packages as well:
-```
-brightnessctl power-profiles-daemon
-```
+
+- brightnessctl
+- power-profiles-daemon
 
 A couple notes:
 
@@ -158,19 +158,19 @@ A couple notes:
 Optionally, add the following after installation, which can help with debugging
 USB, keyboard, and other things
 
-```
-$ sudo pacman -S xorg-xmodmap pciutils usbutils
+```bash
+sudo pacman -S xorg-xmodmap pciutils usbutils
 ```
 
 ### File System Tab
 
 Let's create the file system. First confirm the mounts are correct:
-```
+```bash
 # genfstab /mnt
 ```
 
 Then direct it to a file
-```
+```bash
 # genfstab /mnt > /mnt/etc/fstab
 ```
 
@@ -178,7 +178,7 @@ Then direct it to a file
 
 To enter the installed system, you can use the following command
 
-```
+```bash
 # arch-chroot /mnt
 ```
 
@@ -189,17 +189,17 @@ This will put us inside the new system as sudo user.
 Now for some configurations inside the system.
 
 Let's start with the timezone, and sychronizing our clock
-```
-# ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
-# hwclock --systohc
+```bash
+ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+hwclock --systohc
 ```
 
 Then, we can get our locale added. You need to find `en_US.UTF-8 UTF-8` and
 uncomment that line, and generate the locale
 
-```
-# vim /etc/locale.gen
-# locale-gen
+```bash
+vim /etc/locale.gen
+locale-gen
 ```
 
 Let's add our language to `/etc/locale.conf` by adding the following line to
@@ -219,23 +219,23 @@ KEYMAP=us
 You need to specify a hostname for your computer, best standard is to only use
 lowercases and dashes, like `mudi-beelink` or similar.
 
-```
-$ vim /etc/hostname
+```bash
+vim /etc/hostname
 ```
 
 Now give root a password,
 
-```
-# passwd
+```bash
+passwd
 ```
 
 To create a new user, you can use the following command where `-m` creates a
 home directory, `-G wheel` puts the user in the `wheel` group, and `-s`
 specifies the default shell. Then create a password for it.
 
-```
-# useradd -m -G wheel -s /usr/bin/zsh user-name
-# passwd user-name
+```bash
+useradd -m -G wheel -s /usr/bin/zsh user-name
+passwd user-name
 ```
 
 To set up sudo priviledges on the user, you want to remove the comment on the
@@ -244,8 +244,8 @@ following line
 %wheel ALL=(ALL:ALL) ALL
 ```
 when you run
-```
-# EDITOR=vim visudo
+```bash
+EDITOR=vim visudo
 ```
 
 Now, if you run `su user-name`, you will be able to run `sudo` commands, such
@@ -256,30 +256,30 @@ as `sudo pacman -Syu`.
 Now back in root in your system (not the bootable drive), you can enable core
 services like Wifi and bluetooth
 
-```
-# systemctl enable NetworkManager
-# systemctl enable bluetooth
-# systemctl enable sshd
+```bash
+systemctl enable NetworkManager
+systemctl enable bluetooth
+systemctl enable sshd
 ```
 
 If you installed other packages, like power-profiles-daemon, you can start the
 service now:
-```
-# systemctl enable power-profiles-daemon
+```bash
+systemctl enable power-profiles-daemon
 ```
 
 ### Bootloader
 
 Lastly, you can add the bootloader to your system:
 
-```
-# grub-install /path/to/disk  # as in /dev/nvme0n1 (this is not a partition)
+```bash
+grub-install /path/to/disk  # as in /dev/nvme0n1 (this is not a partition)
 ```
 
 And configure grub
 
-```
-# grub-mkconfig -o /boot/grub/grub.cfg
+```bash
+grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 ### Exit and Reboot
@@ -287,7 +287,7 @@ And configure grub
 Now we can `exit` back to the bootable drive, and then unmount all non-busy
 devices and reboot:
 
-```
+```bash
 # umount -a
 # reboot
 ```
@@ -296,9 +296,10 @@ devices and reboot:
 
 Set up network using `nmcli` like so
 
+```bash
+nmcli device wifi connect NetworkName --ask
 ```
-# nmcli device wifi connect NetworkName --ask
-```
+
 
 Maybe also disable Wi-Fi power savings for faster internet?
 
@@ -307,21 +308,18 @@ Add the following to `/etc/NetworkManager/conf.d/wifi-powersave.conf`
 [connection]
 wifi.powersave = 2
 ```
-
 and restart NetworkManager.
-
-
 
 Update system
 
-```
-# pacman -Syu
+```bash
+pacman -Syu
 ```
 
 Also let's make sure to enable `mpd` for our user
 
-```
-# systemctl --user enable mpd
+```bash
+systemctl --user enable mpd
 ```
 
 ### yay Packages
@@ -329,7 +327,7 @@ Also let's make sure to enable `mpd` for our user
 After logging in with your new user, you should install `yay`, see
 https://github.com/Jguer/yay
 
-```
+```bash
 sudo pacman -S --needed git base-devel  # already from base install
 git clone https://aur.archlinux.org/yay.git
 cd yay
@@ -338,7 +336,7 @@ makepkg -si
 
 and then install the following packages:
 
-```
+```bash
 yay -S hyprshot hyprlock hyrpidle hyprpaper hyprsunset swaync nwg-look \
     catppuccin-gtk-theme-mocha brave-bin gcalcli
 ```
@@ -353,7 +351,7 @@ Clone dotfiles and use `stow`, see README.md
 In order to set up SSH for github, we need to generate our ssh keys and add
 it with `ssh-add`:
 
-```
+```bash
 ssh-keygen -t ed25519 -C "emailAddress"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
@@ -363,7 +361,7 @@ Then in Github, we need to creater an ssh key/setting and add the contents of
 `~/.ssh/id_ed25519.pub`
 
 To test it, simply try the following command
-```
+```bash
 ssh -T git@github.com
 ```
 
@@ -375,14 +373,14 @@ Host *
 ```
 
 You will also need to set up gloabl configs for git, like so:
-```
+```bash
 git --global user.email "emailAddress"
 git --global user.name "FullName"
 ```
 
 If you initially cloned a repository with https, then you can change it to use
 ssh with the following command
-```
+```bash
 git remote set-url origin git@github.com:userName/packageName.git
 ```
 
@@ -400,39 +398,39 @@ See https://wiki.archlinux.org/title/Dropbox
 
 We need to install a package needed for dropbox before we can use it:
 
-```
+```bash
 sudo pacman -S python-gpgme
 ```
 
 We also want to remove a folder and make it read-only to preent dropbox from
 consuming our CPU
 
-```
+```bash
 rm -rf ~/.dropbox-dist
 install -dm0 ~/.dropbox-dist
 ```
 
 Then we can install dropbox and dropbox-cli with `yay`
 
-```
+```bash
 yay -S dropbox dropbox-cli
 ```
 
 Our hyrpland config already has an exec-once for dropbox, but you might want to
 run the following command for good measure:
-```
+```bash
 dropbox-cli autostart y
 ```
 
 
 ## Neomutt and mutt-wizard
 
-```
+```bash
 yay -S goimapnotify lynx abook notmuch urlview mutt-wizard
 ```
 
 Follow mutt-wizard instructions, you will need to create a new pgp key:
-```
+```bash
 gpg --full-gen-key
 pass init yourgpgemail
 ```
@@ -446,7 +444,7 @@ a while.
 To enable notification, you will want to create a config file per email address
 and store them under `~/.config/imapnotify/emailAddress.yaml`:
 
-```
+```json
 {
   "host": "imap.gmail.com",
   "port": 993,
@@ -465,7 +463,7 @@ and store them under `~/.config/imapnotify/emailAddress.yaml`:
 
 Then enable and start one of the services (only one synce `mbsync` can't run
 multiple times at the same time):
-```
+```bash
 systemctl --user enable goimapnotify@emailAddress.service
 systemctl --user start goimapnotify@emailAddress.service
 systemctl --user status goimapnotify@emailAddress.service
@@ -488,11 +486,11 @@ max-cache-ttl 604800
 
 ## Google Calendar
 
-```
+```bash
 yay -S gcalcli
 ```
 
-Follow instructions.
+Follow instructions: https://github.com/insanum/gcalcli
 
 ## Additional Languages
 
@@ -511,7 +509,7 @@ steps
 sudo vim /etc/locale.gen
 ```
 3. Afterwards, regenerate the locales
-```
+```bash
 sudo locale-gen
 ```
 
@@ -549,9 +547,62 @@ input {
 and toggle it with ALT + SPACE. However this does not work for Japanese. So
 it's easier to set up everything through FCITX
 
-## Laptop Specific Notes
+## Obtaining Media
 
-for 
+You can use `yt-dlp` to obtain media. You can download it using `pacman` like
+so
+```bash
+sudo pacman -S ffmpeg yt-dlp  # ffmpeg might be needed for some file types
+```
+
+You can run it like this
+```bash
+yt-dlp -x -f bestaudio --embed-metadata 'URL' -o '~/path/to/dir/%(title)s.%(ext)s'
+```
+
+## Music Player Daemon - Play Count
+
+After installing mpd and ncmpcpp, you can install the following project to
+create a playcount of each song, and even add rating.
+
+https://github.com/sp1ff/mpdpopm?tab=readme-ov-file#building-from-source
+
+Make sure you have defined a sticker database in your mpd dotfile.
+
+You can follow the Building from source section since the AUR package seems to
+be outdated. After installing it, you need to run the following:
+
+```bash
+mppopmd -v -F  # and play a song, you'll see the play count be updated
+```
+
+You can then verify that the playcount has been updated by running
+
+```bash
+mppopm get-pc path/to/song
+```
+
+Then you can start the service as a user:
+```bash
+systemctl --user start mppopmd.service
+systemctl --user enable mppopmd.service
+```
+
+Then you can use `mppopm` to add songs to the queue based on the number of
+times a song has been played, like so:
+
+```bash
+mppopm findadd "(playcount == 0)"
+mppopm findadd "(artist =~ \"green\") and (playcount > 0)" # multiple filters
+```
+
+## Connecting Android
+See https://wiki.archlinux.org/title/Media_Transfer_Protocol
+
+```bash
+sudo pacman -S android-file-transfer
+aft-mtp-mount ~/mnt_point
+```
 
 ## Resources
 

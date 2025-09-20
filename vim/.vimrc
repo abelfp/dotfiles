@@ -54,6 +54,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Vim-figutive (for git integration)
 Plug 'tpope/vim-fugitive'
+" For markdown code
+Plug 'tpope/vim-markdown'
 
 " --- Copying
 " For copying

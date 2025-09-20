@@ -1,6 +1,10 @@
+# defaults can be found at /usr/share/doc/ncmpcpp/config
+mpd_music_dir = ~/Music
 visualizer_color = blue, cyan, green, yellow, magenta, red
 #visualizer_color = red, magenta, yellow, green, cyan, blue
 visualizer_look = ▮●
 visualizer_type = spectrum
 # spectrum/wave/wave_filled/ellipse
 visualizer_spectrum_smooth_look = yes
+tag_editor_extended_numeration = yes
+#song_columns_list_format = (20)[]{a} (6f)[green]{NE} (50)[white]{t|f:Title} (20)[cyan]{b} (7f)[magenta]{l}
