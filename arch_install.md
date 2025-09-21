@@ -604,6 +604,27 @@ sudo pacman -S android-file-transfer
 aft-mtp-mount ~/mnt_point
 ```
 
+## Printer
+
+In order to get the printer to work, we need to install
+[CUPS](https://wiki.archlinux.org/title/CUPS) and the HP libraries to set up
+the printer:
+```bash
+sudo pacman -S cups hplip
+```
+
+This should also install ghostscript, if not install it too.
+
+Then you can setup your HP printer by running the following:
+```bash
+hp-setup -i ip_address
+```
+You can look up the printer's IP address by going to http://localhost:631/admin
+and signing in as your user, and starting to set up the printer.
+
+TODO:
+Look into how to set up scanner.
+
 ## Resources
 
 - Comfy Guide: https://www.youtube.com/watch?v=68z11VAYMS8
