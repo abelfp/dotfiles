@@ -596,6 +596,20 @@ mppopm findadd "(playcount == 0)"
 mppopm findadd "(artist =~ \"green\") and (playcount > 0)" # multiple filters
 ```
 
+## PDF Viewer
+
+Follow: https://wiki.archlinux.org/title/Zathura
+
+```bash
+sudo pacman -S zathura zathura-pdf-poppler
+```
+
+Set Zathura as the default pdf viewer:
+```bash
+ls /usr/share/applications/org.pwmt.zathura.desktop
+xdg-mime default org.pwmt.zathura.desktop application/pdf
+```
+
 ## Connecting Android
 See https://wiki.archlinux.org/title/Media_Transfer_Protocol
 
@@ -604,7 +618,7 @@ sudo pacman -S android-file-transfer
 aft-mtp-mount ~/mnt_point
 ```
 
-## Printer
+## Printer & Scanner
 
 In order to get the printer to work, we need to install
 [CUPS](https://wiki.archlinux.org/title/CUPS) and the HP libraries to set up
@@ -622,8 +636,11 @@ hp-setup -i ip_address
 You can look up the printer's IP address by going to http://localhost:631/admin
 and signing in as your user, and starting to set up the printer.
 
-TODO:
-Look into how to set up scanner.
+For the scanner, simply install the following packages
+```bash
+sudo pacman -S sane-airscan simple-scan
+```
+You can use the GUI Simple Scan for scanning.
 
 ## Resources
 
