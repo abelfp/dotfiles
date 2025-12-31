@@ -8,7 +8,8 @@ nnoremap <C-H> <C-W><C-H>
 map ,re :source $MYVIMRC<CR>
 " For copying with leader k
 vnoremap <leader>k :OSCYankVisual<CR>
-" Fuzzy finding Gfiles
+" Fuzzy finding
 nnoremap <leader>p :GFiles<CR>
+nnoremap <leader>f :Files<CR>
 " shortcut to formatting line
 nnoremap <leader>l v0o$gq

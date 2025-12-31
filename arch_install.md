@@ -142,7 +142,8 @@ Remember to change `amd-ucode` for `intel-ucode` depending on your CPU.
     zsh man-db man-pages texinfo tmux stow bluez bluez-utils blueman rsync \
     pipewire-pulse pamixer wofi waybar nautilus hyprland mpd mpc ncmpcpp tree \
     solaar htop fastfetch sed python-requests nodejs-lts-jod npm cheese \
-    ttf-font-awesome ttf-jetbrains-mono-nerd noto-fonts-emoji
+    pavucontrol bluez-obexqv ttf-font-awesome ttf-jetbrains-mono-nerd \
+    noto-fonts-emoji
 ```
 
 For laptops, you might want to install the following packages as well:
@@ -153,6 +154,7 @@ For laptops, you might want to install the following packages as well:
 A couple notes:
 
 - `blueman` is the GUI for bluetooth connection
+- `bluez-obex` will allow you to send files through bluetooth after pairing
 - `solaar` will help with your system not waking up from logitech's receiver
 
 Optionally, add the following after installation, which can help with debugging
@@ -386,6 +388,7 @@ git remote set-url origin git@github.com:userName/packageName.git
 
 Note: It might be a good idea to see how you can use `pass` to store ssh key
 passphrase.
+Or see https://www.lorenzobettini.it/2023/09/hyprland-and-ssh-agent/
 
 ## Hibernation
 

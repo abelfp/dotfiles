@@ -56,6 +56,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 " For markdown code
 Plug 'tpope/vim-markdown'
+" Table mode
+Plug 'dhruvasagar/vim-table-mode'
 
 " --- Copying
 " For copying
