@@ -143,7 +143,7 @@ Remember to change `amd-ucode` for `intel-ucode` depending on your CPU.
     pipewire-pulse pamixer wofi waybar nautilus hyprland mpd mpc ncmpcpp tree \
     solaar htop fastfetch sed python-requests nodejs-lts-jod npm cheese \
     pavucontrol bluez-obexqv ttf-font-awesome ttf-jetbrains-mono-nerd \
-    noto-fonts-emoji
+    noto-fonts-emoji git-delta
 ```
 
 For laptops, you might want to install the following packages as well:

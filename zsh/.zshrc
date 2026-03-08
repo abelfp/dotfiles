@@ -47,6 +47,9 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# other aliases
+add-ssh-key='eval "$(ssh-agent -s)" && ~/.ssh/id_ed25519'
+
 export LESS="-F -X $LESS"
 export LESS="$LESS --no-vbell -R -Q"
 
