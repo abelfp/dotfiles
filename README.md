@@ -58,4 +58,5 @@ to your git directory. Then run `stow ncmpcpp`.
 Backup the default hyprland.conf file, and then run `stow hyprland`, you might
 need to adjust a few things based on your laptop/desktop's needs.
 
-
+## Git
+Nothing special here, simply run `stow wofi` (mainly for git-delta).
