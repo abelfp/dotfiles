@@ -64,5 +64,5 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
 if [ "$(tty)" = "/dev/tty1" ]; then
-  exec Hyprland
+  exec start-hyprland
 fi
