@@ -141,9 +141,19 @@ Remember to change `amd-ucode` for `intel-ucode` depending on your CPU.
     network-manager-applet base-devel grub efibootmgr git kitty firefox vim \
     zsh man-db man-pages texinfo tmux stow bluez bluez-utils blueman rsync \
     pipewire-pulse pamixer wofi waybar nautilus hyprland mpd mpc ncmpcpp tree \
+<<<<<<< HEAD
     solaar htop fastfetch sed python-requests nodejs-lts-jod npm snapshot \
     pavucontrol bluez-obexqv ttf-font-awesome ttf-jetbrains-mono-nerd \
     noto-fonts-emoji git-delta
+||||||| parent of 45cb482 ([Main] Misc changes)
+    solaar htop fastfetch sed python-requests nodejs-lts-jod npm cheese \
+    pavucontrol bluez-obexqv ttf-font-awesome ttf-jetbrains-mono-nerd \
+    noto-fonts-emoji git-delta
+=======
+    solaar htop fastfetch sed python-requests nodejs-lts-jod npm cheese \
+    pavucontrol bluez-obex ttf-font-awesome ttf-jetbrains-mono-nerd \
+    noto-fonts-emoji git-delta libreoffice-still vlc vlc-plugin-ffmpeg
+>>>>>>> 45cb482 ([Main] Misc changes)
 ```
 
 For laptops, you might want to install the following packages as well:
