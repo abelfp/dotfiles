@@ -341,10 +341,16 @@ and then install the following packages:
 
 ```bash
 yay -S hyprshot hyprlock hyrpidle hyprpaper hyprsunset swaync nwg-look \
-    catppuccin-gtk-theme-mocha brave-bin gcalcli
+    catppuccin-gtk-theme-mocha brave-bin ttf-vista-fonts ttf-ms-fonts
 ```
 
 Use `nwg-look` or `GTK Settings` to change color scheme and other things.
+
+To reload fonts on your system run:
+
+```bash
+sudo fc-cache -fv
+```
 
 ### Dotfiles
 
@@ -647,6 +653,32 @@ For the scanner, simply install the following packages
 sudo pacman -S sane-airscan simple-scan
 ```
 You can use the GUI Simple Scan for scanning.
+
+# LaTeX Installation
+
+For details and updates see: https://wiki.archlinux.org/title/TeX_Live
+
+The installation is pretty straight forward, we only need to run a couple
+commands but they can take hours to run:
+
+```bash
+cd /tmp # working directory of your choice
+curl -L -o install-tl-unx.tar.gz https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+zcat < install-tl-unx.tar.gz | tar xf - # note final - on that command line
+cd install-tl-2*
+sudo perl ./install-tl --no-interaction # as root or with writable destination;
+```
+
+Finally, prepend `/usr/local/texlive/YYYY/bin/PLATFORM` to your PATH,
+e.g., `/usr/local/texlive/2026/bin/x86_64-linux`. This should already be in the
+zsh dotfile.
+
+Once new fonts are installed and refreshed in your system, lualatex will pick
+them up after running:
+
+```bash
+luaotfload-tool --update --force
+```
 
 ## Resources
 
