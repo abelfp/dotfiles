@@ -144,7 +144,7 @@ Remember to change `amd-ucode` for `intel-ucode` depending on your CPU.
     solaar htop fastfetch sed python-requests nodejs-lts-jod npm snapshot \
     pavucontrol bluez-obex ttf-font-awesome ttf-jetbrains-mono-nerd \
     noto-fonts-emoji git-delta libreoffice-still vlc vlc-plugin-ffmpeg \
-    thunderbird
+    thunderbird obs-studio anki
 ```
 
 For laptops, you might want to install the following packages as well:
